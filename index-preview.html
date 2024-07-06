@@ -950,6 +950,30 @@
       margin-top: 3rem;
       margin-bottom: 3rem;
     }
+
+    .results-table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .results-table th:first-child {
+      border-left: 1px solid #ddd;
+    }
+
+    .results-table {
+      border-collapse: collapse !important;
+      border: 1px solid #ddd !important;
+    }
+
+    .results-table th,
+    .results-table td {
+      border: 1px solid #ddd !important;
+      padding: 8px !important;
+    }
+
+    .results-table .model-header {
+      text-align: right !important;
+    }
   </style>
 </head>
 
@@ -984,7 +1008,7 @@
                     <span class="author-block">
                       Logan Bolton<sup>1</sup>,</span>
                     <span class="author-block">
-                      <a href="https://taesiri.com">Mohammad Reza Taesiri</a><sup>2</sup>,</span>
+                      <a href="https://taesiri.ai">Mohammad Reza Taesiri</a><sup>2</sup>,</span>
                     <span class="author-block">
                       <a href="https://anhnguyen.me/research/">Anh Nguyen</a><sup>1</sup>
                     </span>
@@ -1171,7 +1195,7 @@
           The following table shows the performance of the four models on the task of counting line intersections.
         </p>
 
-        <table class="performance-table">
+        <table class="performance-table results-table">
           <tr>
             <th>Thickness</th>
             <th>
