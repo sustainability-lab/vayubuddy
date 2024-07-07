@@ -974,6 +974,27 @@
     .results-table .model-header {
       text-align: center !important;
     }
+
+    .special-word {
+      font-weight: bold;
+      color: #4a4a4a;
+      background-color: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .special-word.thyu {
+      color: #d35400;
+    }
+
+    .special-word.subd {
+      color: #27ae60;
+    }
+
+    .special-word.ackn {
+      color: #2980b9;
+    }
   </style>
 </head>
 
@@ -1111,7 +1132,7 @@
 
 
 
-
+  <!-- TASK 1 Begins -->
   <section class="section">
     <div class="container is-max-desktop">
 
@@ -1166,7 +1187,7 @@
             </figure>
           </div>
         </div>
-        <figcaption>Figure 1: Examples of 2D line plots used in the task, showing different numbers of intersections.
+        <figcaption>Fig. 1: Examples of 2D line plots used in the task, showing different numbers of intersections.
         </figcaption>
       </div>
 
@@ -1251,9 +1272,6 @@
 
 
         <h2 class="title is-3">Qualitative samples</h2>
-
-
-
       </div>
 
       <div>
@@ -1353,13 +1371,13 @@
             </table>
             <div class="legend">
               <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
                 <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
                     class="gemini-blue">1.5</span>
                   Pro</span>
-              </div>
-              <div class="legend-item">
-                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
-                    class="gpt-green">4o</span></span>
               </div>
               <div class="legend-item">
                 <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
@@ -1372,12 +1390,623 @@
 
             </div>
           </div>
-          <figcaption>Fig. 1: VLMs cannot reliably count the intersections.</figcaption>
+          <figcaption>Fig. 2: VLMs cannot reliably count the intersections.</figcaption>
+        </div>
+      </div>
+  </section>
+  <!-- TASK 1 Ends -->
+
+  <hr>
+  <!-- TASK 2 Begins -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2">Task 2: Two circles <i class="fas fa-circle"></i><i class="fas fa-circle"></i></h2>
+
+      <div class="content">
+        <p>
+          In contrast to Task 1 where we tested VLMs on thin lines, here we evaluate their ability to perceive
+          interactions
+          between larger objects - specifically, two same-sized filled circles. This task assesses VLMs' capability to
+          detect
+          (1) small gaps between circles and (2) overlapping circles.
+        </p>
+
+        <h3 class="title is-4">Images</h3>
+        <p>
+          We generate 672 images of two circles on a white canvas. The circles vary in size, distance, and orientation:
+        </p>
+        <ul>
+          <li>Circle diameters: 1/4, 1/5, 1/6, or 1/7 of the canvas size</li>
+          <li>Distances between circle perimeters: -0.15 to 0.5 times the diameter</li>
+          <li>Orientations: 90°, 0°, -45°, and 45° angles with the x-axis</li>
+          <li>Canvas sizes: 384, 769, and 1155 pixels</li>
+        </ul>
+
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/TwoTouchingCircles/color_coded/pixels_384_rotation_vertical_diameter_0.14_distance_-0.15.svg"
+                alt="Overlapping circles">
+              <figcaption>Overlapping and touching</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/TwoTouchingCircles/color_coded/pixels_769_rotation_vertical_diameter_0.2_distance_0.0.svg"
+                alt="Touching circles">
+              <figcaption>Non-overlapping but touching</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/TwoTouchingCircles/color_coded/pixels_1155_rotation_vertical_diameter_0.25_distance_0.15.svg"
+                alt="Separated circles">
+              <figcaption>Non-overlapping and non-touching</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/TwoTouchingCircles/color_coded/pixels_1155_rotation_diagonal_1_diameter_0.25_distance_0.35.svg"
+                alt="Diagonal orientation">
+              <figcaption>Different orientation</figcaption>
+            </figure>
+          </div>
+        </div>
+        <figcaption>Fig. 3: Examples of two-circle images used in the task, showing different configurations.
+        </figcaption>
+      </div>
+
+      <h3 class="title is-4">Prompts</h3>
+      <div class="content">
+        <p>
+          We ask each question using two different wordings:
+        </p>
+        <ol>
+          <li><em>"Are the two circles touching each other? Answer with Yes/No."</em></li>
+          <li><em>"Are the two circles overlapping? Answer with Yes/No."</em></li>
+        </ol>
+
+        <h3 class="title is-4">Groundtruth</h3>
+        <div class="content">
+          <p>
+            Answers are based on the distance d between circle perimeters:
+          </p>
+          <ul>
+            <li>d < 0: Overlapping and touching</li>
+            <li>d = 0: Non-overlapping but touching</li>
+            <li>d > 0: Non-overlapping and non-touching</li>
+          </ul>
+          <p>Random-baseline accuracy: 50%.</p>
         </div>
 
 
+
+
+        <h2 class="title is-3">Results</h2>
+        <p class="mb-4">
+          The following table shows the performance of the four models on the task of counting line intersections.
+        </p>
+        <table class="performance-table results-table">
+          <tr>
+            <th></th>
+            <th>
+              <div class="model-header">
+                <span class="model">GPT-<span class="gpt-green">4o</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Gemini-<span class="gemini-blue">1.5</span> Pro</span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <td>Overlapping</td>
+            <td class="rnumber">71.27</td>
+            <td class="rnumber">93.30</td>
+            <td class="rnumber">88.09</td>
+            <td class="rnumber">88.83</td>
+          </tr>
+          <tr>
+            <td>Touching</td>
+            <td class="rnumber">74.10</td>
+            <td class="rnumber">92.26</td>
+            <td class="rnumber">80.95</td>
+            <td class="highlight rnumber">94.49</td>
+          </tr>
+          <tr>
+            <td><strong>Average</strong></td>
+            <td class="rnumber">72.69</td>
+            <td class="highlight rnumber">92.78</td>
+            <td class="rnumber">84.52</td>
+            <td class="rnumber">91.66</td>
+          </tr>
+        </table>
+
+        <h2 class="title is-3">Qualitative samples</h2>
+      </div>
+
+      <div>
+
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>Are the two circles overlapping? Answer with Yes/No.</h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img
+                    src="static/images/TwoTouchingCircles/samples/overlap/pixels_769_rotation_vertical_diameter_0.14_distance_-0.1.svg"
+                    alt="Circle 1"></th>
+                <th><img
+                    src="static/images/TwoTouchingCircles/samples/overlap/pixels_384_rotation_diagonal_2_diameter_0.2_distance_-0.05.svg"
+                    alt="Circle 2"></th>
+                <th><img
+                    src="static/images/TwoTouchingCircles/samples/overlap/pixels_1155_rotation_horizontal_diameter_0.25_distance_0.0.svg"
+                    alt="Circle 3"></th>
+                <th><img
+                    src="static/images/TwoTouchingCircles/samples/overlap/pixels_769_rotation_diagonal_2_diameter_0.17_distance_0.05.svg"
+                    alt="Circle 4"></th>
+                <th><img
+                    src="static/images/TwoTouchingCircles/samples/overlap/pixels_1155_rotation_horizontal_diameter_0.2_distance_0.1.svg"
+                    alt="Circle 5"></th>
+                <th><img
+                    src="static/images/TwoTouchingCircles/samples/overlap/pixels_384_rotation_diagonal_1_diameter_0.2_distance_0.15.svg"
+                    alt="Circle 6"></th>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">Yes</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">No</span><span
+                    class="check">✓</span>
+                </td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 4: VLMs consistently fail at smaller distances. However, at a large gap, <span
+              class="model">GPT-<span class="gpt-green">4o</span></span> remains unreliable (rightmost). <span
+              class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span> tends to conservatively answer "No"
+            regardless of the actual distance
+            between the two circles.</figcaption>
+        </div>
       </div>
   </section>
+  <!-- TASK 2 Ends -->
+
+  <hr>
+  <!-- TASK 3 Begins -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2">Task 3: The circled letter <i class="fas fa-circle"></i><i class="fas fa-font"></i></h2>
+
+      <div class="content">
+        <p>
+          Consistent with prior reports <a href="#">[1]</a><a href="#">[2]</a><a href="#">[3]</a>, we find that VLMs can
+          100%
+          accurately identify a primitive shape (e.g., a red circle) and can perfectly read an English word (e.g.,
+          <span class="special-word">Subdermatoglyphic</span>) alone. Here, we superimposed the red circle on every
+          letter, one at a time, in the word,
+          and ask
+          VLMs to identify which letter is being circled. While the task is easy to humans, our hypothesis is that if a
+          VLM's
+          vision is "blurry", it might not be able to identify the exact letter being circled since there is tiny
+          spacing
+          between the adjacent letters.
+        </p>
+
+        <h3 class="title is-4">Images</h3>
+        <p>
+          We choose three strings <span class="special-word">Acknowledgement</span>, <span
+            class="special-word">Subdermatoglyphic</span>, and tHyUiKaRbNqWeOpXcZvM because they contain
+          characters
+          of variable widths and heights. Furthermore, all four tested VLMs can read out all characters in these strings
+          when
+          they are input to the models as an image. While <span class="special-word">Acknowledgement</span> is a common
+          English word, <span class="special-word">Subdermatoglyphic</span> is
+          the
+          longest word without repetitive letters. We also test VLMs on the random string <span
+            class="special-word">tHyUiKaRbNqWeOpXcZvM</span> to
+          estimate how
+          much model accuracy is due to its familiarity with the word.
+        </p>
+        <p>
+          For each (string, circled-letter) pair, we render a 512×512 image by choosing among 3 red oval line-thickness
+          levels,
+          2 font sizes, and 4 random positions in the canvas for a total of 24 images. That is, we generate 360, 408,
+          and 480
+          images for <span class="special-word">Acknowledgement</span> (15 letters), <span
+            class="special-word">Subdermatoglyphic</span> (17 letters), and
+          <span class="special-word">tHyUiKaRbNqWeOpXcZvM</span> (20
+          letters),
+          respectively. We ensure each letter to be circled fits completely the oval.
+        </p>
+
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/CircledLetter/benchmark_samples/gt_n_pred_n_text_image_54b43961-119e-4dc3-80fc-56d6fb4897fe.png"
+                alt="Circled letter example 1">
+              <figcaption><span class="special-word">Acknowledgement</span> with 'n' circled</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/CircledLetter/benchmark_samples/gt_t_pred_t_text_image_7b9fb60f-f583-4e74-9765-f3330c63bc6e.png"
+                alt="Circled letter example 2">
+              <figcaption><span class="special-word">tHyUiKaRbNqWeOpXcZvM</span> with 't' circled</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/CircledLetter/benchmark_samples/gt_x_pred_x_text_image_b5b61850-f87d-4fcb-ae7a-19ea4f69ef39.png"
+                alt="Circled letter example 3">
+              <figcaption><span class="special-word">tHyUiKaRbNqWeOpXcZvM</span> with 'X' circled</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/CircledLetter/benchmark_samples/gt_u_pred_u_text_image_7e270309-130a-480a-a3d5-1078d29ae148.png"
+                alt="Circled letter example 4">
+              <figcaption><span class="special-word">Subdermatoglyphic</span> with 'u' circled</figcaption>
+            </figure>
+          </div>
+        </div>
+        <figcaption>Fig. 5: Examples of circled letter images used in the task, showing different words and circled
+          letters.
+        </figcaption>
+      </div>
+
+      <h3 class="title is-4">Prompts</h3>
+      <div class="content">
+        <p>
+          We ask each question using two different wordings:
+        </p>
+        <ol>
+          <li><em>"Which letter is being circled?"</em></li>
+          <li><em>"Which character is being highlighted with a red oval?"</em></li>
+        </ol>
+
+        <h3 class="title is-4">Groundtruth</h3>
+        <div class="content">
+          <p>
+            Letters need to match predicted letters exactly (case-sensitive).
+          </p>
+        </div>
+
+
+
+
+        <h2 class="title is-3">Results</h2>
+        <p class="mb-4">
+          The following table shows the performance of the four models on the task of identifying the circled letter.
+        </p>
+        <table class="performance-table results-table">
+          <tr>
+            <th>Word</th>
+            <th>
+              <div class="model-header">
+                <span class="model">GPT-<span class="gpt-green">4o</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Gemini-<span class="gemini-blue">1.5</span> Pro</span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <td><span class="special-word">Acknowledgement</span></td>
+            <td class="rnumber">69.03</td>
+            <td class="rnumber">97.50</td>
+            <td class="rnumber">82.64</td>
+            <td class="rnumber">91.11</td>
+          </tr>
+          <tr>
+            <td><span class="special-word">Subdermatoglyphic</span></td>
+            <td class="rnumber">63.60</td>
+            <td class="rnumber">91.05</td>
+            <td class="rnumber">71.45</td>
+            <td class="rnumber">94.49</td>
+          </tr>
+          <tr>
+            <td><span class="special-word">tHyUiKaRbNqWeOpXcZvM</span></td>
+            <td class="rnumber">77.92</td>
+            <td class="rnumber">89.90</td>
+            <td class="rnumber">65.94</td>
+            <td class="rnumber">82.08</td>
+          </tr>
+          <tr>
+            <td><strong>Average</strong></td>
+            <td class="rnumber">70.18</td>
+            <td class="rnumber">92.81</td>
+            <td class="rnumber">73.34</td>
+            <td class="rnumber">89.22</td>
+          </tr>
+        </table>
+
+        <h2 class="title is-3">Qualitative samples</h2>
+      </div>
+
+      <div>
+
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>Which letter is being circled?</h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img
+                    src="static/images/CircledLetter/QualSamples/P1/gt_l_Sonnet_o_Sonnet-3.5_l_GPT-4o_o_Gemini-1.5-Pro_w_text_image_9d28452a-29b5-4c12-9fd4-020410a9c0a8_prompt1.png"
+                    alt="Circled Letter 1"></th>
+                <th><img
+                    src="static/images/CircledLetter/QualSamples/P1/gt_m_Sonnet_e_Sonnet-3.5_e_GPT-4o_e_Gemini-1.5-Pro_m_text_image_9eb95711-547b-4340-99db-8cf91d09902c_prompt1.png"
+                    alt="Circled Letter 2"></th>
+                <th><img
+                    src="static/images/CircledLetter/QualSamples/P1/gt_n_Sonnet_e_Sonnet-3.5_t_GPT-4o_t_Gemini-1.5-Pro_n_text_image_040f7cb9-681c-4e3f-9fb2-f9a23fc7ca3a_prompt1.png"
+                    alt="Circled Letter 3"></th>
+                <th><img
+                    src="static/images/CircledLetter/QualSamples/P1/gt_p_Sonnet_y_Sonnet-3.5_h_GPT-4o_o_Gemini-1.5-Pro_p_text_image_4ee4fd8b-6af2-4b9e-9a4d-b2ef2e1ade30_prompt1.png"
+                    alt="Circled Letter 4"></th>
+                <th><img
+                    src="static/images/CircledLetter/QualSamples/P1/gt_t_Sonnet_a_Sonnet-3.5_t_GPT-4o_o_Gemini-1.5-Pro_o_text_image_ee8e7572-f2e9-43df-a71c-039d504453bd_prompt1.png"
+                    alt="Circled Letter 5"></th>
+                <th><img
+                    src="static/images/CircledLetter/QualSamples/P1/gt_v_Sonnet_t_Sonnet-3.5_m_GPT-4o_z_Gemini-1.5-Pro_v_text_image_6a65095e-4691-4a31-a846-cdd6bae99706_prompt1.png"
+                    alt="Circled Letter 6"></th>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">o</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">e</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">t</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">o</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">o</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">z</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">w</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">m</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">n</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">p</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">o</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">v</span><span
+                    class="check">✓</span>
+                </td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">o</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">e</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">e</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">y</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">a</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">t</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">l</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">e</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">t</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">h</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">t</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">m</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 6: Identifying the letter being circled is non-trivial for VLMs across both English words
+            (<span class="special-word">Acknowledgement</span> & <span class="special-word">Subdermatoglyphic</span>)
+            and a random string
+            (<span class="special-word">tHyUiKaRbNqWeOpXcZvM</span>). When making mistakes, VLMs
+            tend to
+            predict letters adjacent to the circled one.</figcaption>
+
+        </div>
+      </div>
+  </section>
+  <!-- TASK 3 Ends -->
 
 
 
