@@ -10,15 +10,13 @@
   <title>VLMs are Blind</title>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-23CQCVEDSJ"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRFWN15ZEN"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-23CQCVEDSJ');
+
+    gtag('config', 'G-GRFWN15ZEN');
   </script>
 
   <link rel="stylesheet" href="https://gradio.s3-us-west-2.amazonaws.com/2.6.2/static/bundle.css">
@@ -1089,6 +1087,21 @@
     .task-box:nth-child(n) .task-description {
       color: rgba(255, 255, 255, 0.8);
     }
+
+
+    .grid-table th {
+      width: 150px;
+      /* Adjust this value as needed */
+      height: 150px;
+      /* Adjust this value as needed */
+      padding: 5px;
+    }
+
+    .grid-table th img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   </style>
 </head>
 
@@ -1155,7 +1168,7 @@
                 </span>
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/VLMsAreBlind/Benchmark"
+                  <a href="https://github.com/anguyen8/vision-llms-are-blind"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -1165,7 +1178,8 @@
                 </span>
                 <!-- Dataset Link. -->
                 <span class="link-block">
-                  <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://huggingface.co/datasets/XAI/vlmsareblind" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <p style="font-size:20px">🤗</p>
                     </span>
@@ -1272,7 +1286,8 @@
         <p>
           Given the impressive accuracy of VLMs on answering questions on diagrams and charts (e.g., <span
             class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span> scoring 94.7% on AI2D and 90.8% on
-          ChartQA) <a href="#ref1">[1]</a>, a reasonable hypothesis is that VLMs must be able to see whether two graphs
+          ChartQA) <a href="https://arxiv.org/abs/2203.10244">[1]</a>, a reasonable hypothesis is that VLMs must be able
+          to see whether two graphs
           intersect in a
           chart. Here, we test this hypothesis by asking VLMs to count the number of intersections between two 2-segment
           piece-wise linear functions.
@@ -1826,9 +1841,12 @@
 
       <div class="content">
         <p>
-          Consistent with prior reports <a href="#">[1]</a><a href="#">[2]</a><a href="#">[3]</a>, we find that VLMs can
+          Consistent with prior reports <a href="https://arxiv.org/abs/2304.06712">[2]</a><a
+            href="https://arxiv.org/abs/2310.11441">[3]</a><a href="https://arxiv.org/abs/2309.17421">[4]</a>, we find
+          that VLMs can
           100%
-          accurately identify a primitive shape (e.g., a red circle) and can perfectly read an English word (e.g.,
+          accurately identify a primitive shape (e.g., a red circle ⭕)<a href="https://arxiv.org/abs/2304.06712">[2]</a>
+          and can perfectly read an English word (e.g.,
           <span class="special-word">Subdermatoglyphic</span>) alone. Here, we superimposed the red circle on every
           letter, one at a time, in the word,
           and ask
@@ -2145,11 +2163,16 @@
 
       <div class="content">
         <p>
-          Aligned with prior research [1], we also find VLMs to be able to count disjoint circles. Yet, here, we test
+          Aligned with prior research <a href="https://arxiv.org/abs/2309.17421">[4]</a>, we also find VLMs to be able
+          to count disjoint circles. Yet, here, we test
           VLMs on
           counting circles that are <em>intersecting</em> like in the Olympic logo—a common cognitive development
           exercise for
-          preschoolers [2][3]. Our hypothesis is that a "blurry" vision may not see the intersection between two circles
+          preschoolers <a
+            href="https://www.myteachingstation.com/preschool/math/numbers/count-shapes-printables">[5]</a><a
+            href="https://depositphotos.com/vector/how-many-counting-game-with-color-simple-geometric-shapes-for-kids-educational-maths-task-for-266096226.html">[6]</a>.
+          Our hypothesis is that a "blurry" vision may not see the
+          intersection between two circles
           clearly
           and therefore unable to trace circles and count them. For generalization of our findings, we repeat the
           experiment
@@ -2791,7 +2814,7 @@
                 columns={6}
               </h2>
             </div>
-            <table class="result-table">
+            <table class="result-table  grid-table">
               <tr>
                 <th></th>
                 <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_4x5_2000_20.svg" alt="Grid 1">
@@ -2931,7 +2954,7 @@
               <h2>How many rows and columns are in the table? Answer with only the numbers in a pair (row, column),
                 e.g., (5,6).</h2>
             </div>
-            <table class="result-table">
+            <table class="result-table grid-table">
               <tr>
                 <th></th>
                 <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_4x4_500_20.svg" alt="Grid 1">
