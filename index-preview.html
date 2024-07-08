@@ -2010,6 +2010,515 @@
 
 
 
+  <hr>
+  <!-- TASK 4 Begins -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2">Task 4: Counting overlapping shapes <i class="fas fa-circle"></i><i
+          class="fas fa-circle"></i><i class="fas fa-circle"></i></h2>
+
+      <div class="content">
+        <p>
+          Aligned with prior research [1], we also find VLMs to be able to count disjoint circles. Yet, here, we test
+          VLMs on
+          counting circles that are <em>intersecting</em> like in the Olympic logo—a common cognitive development
+          exercise for
+          preschoolers [2][3]. Our hypothesis is that a "blurry" vision may not see the intersection between two circles
+          clearly
+          and therefore unable to trace circles and count them. For generalization of our findings, we repeat the
+          experiment
+          with pentagons as well.
+        </p>
+
+        <h3 class="title is-4">Images</h3>
+        <p>
+          In an image of size C×C, where C ∈ {384, 769, 1155}px, we draw N ∈ {5, 6, 7, 8, 9} overlapping, same-sized
+          circles
+          arranged in two rows like the Olympic logo. A circle diameter φ ∈ {C/5, C/10}. We repeat the images with two
+          different
+          line thickness for rendering circles. This procedure renders 3 resolutions × 5 × 2 diameters = 60 images. We
+          repeat
+          for pentagons in addition to circles, resulting in 60 × 2 shapes = 120 images in total. For pentagons, their
+          side
+          length d ∈ {C/5, C/10}.
+        </p>
+
+
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/OlympicLikeLogo/dataset_samples/pixels_384_linewidth_0.5_diameter_0.1_numCircles_5_black.svg"
+                alt="Olympic-like logo example 1">
+              <figcaption>5 circles, small diameter</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/OlympicLikeLogo/dataset_samples/pixels_384_linewidth_0.5_diameter_0.2_numCircles_6_black_2.svg"
+                alt="Olympic-like logo example 2">
+              <figcaption>6 circles, large diameter</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/OlympicLikeLogo/dataset_samples/pixels_769_linewidth_1_diameter_0.1_numCircles_8_colored_2.svg"
+                alt="Olympic-like logo example 3">
+              <figcaption>8 colored circles</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/OlympicLikeLogo/PentagonShapes/dataset_samples/pixels_1155_linewidth_1_side_0.0625_numCircles_9_colored.svg"
+                alt="Olympic-like logo example 4">
+              <figcaption>9 colored pentagons</figcaption>
+            </figure>
+          </div>
+        </div>
+        <figcaption>Fig. 7: Examples of Olympic-like logo images used in the task, showing different numbers of shapes,
+          sizes,
+          and colors.</figcaption>
+      </div>
+
+      <h3 class="title is-4">Prompts</h3>
+      <div class="content">
+        <p>
+          We ask each question using two different wordings:
+        </p>
+        <ol>
+          <li><em>"How many {shapes} are in the image? Answer with only the number in numerical format."</em></li>
+          <li><em>"Count the {shapes} in the image. Answer with a number in curly brackets e.g. {3}."</em></li>
+        </ol>
+        <p>
+          Where {shapes} is either "circles" or "pentagons" depending on the image.
+        </p>
+        <h3 class="title is-4">Groundtruth</h3>
+        <div class="content">
+          <p>
+            Answers are ∈ {5, 6, 7, 8, 9} (random-baseline accuracy: 20%).
+          </p>
+        </div>
+
+
+        <h2 class="title is-3">Results</h2>
+        <p class="mb-4">
+          The following table shows the performance of the four models on the task of identifying the circled letter.
+        </p>
+        <table class="performance-table results-table">
+          <tr>
+            <th></th>
+            <th>
+              <div class="model-header">
+                <span class="model">GPT-<span class="gpt-green">4o</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Gemini-<span class="gemini-blue">1.5</span> Pro</span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <td>Circles</td>
+            <td class="rnumber">42.50</td>
+            <td class="rnumber">20.83</td>
+            <td class="rnumber">31.66</td>
+            <td class="highlight rnumber">44.16</td>
+          </tr>
+          <tr>
+            <td>Pentagons</td>
+            <td class="rnumber">19.16</td>
+            <td class="rnumber">9.16</td>
+            <td class="rnumber">11.66</td>
+            <td class="highlight rnumber">75.83</td>
+          </tr>
+        </table>
+
+        <h2 class="title is-3">Qualitative samples</h2>
+      </div>
+
+      <div>
+
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>How many circles are in the image? Answer with only the number in numerical format.</h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img src="./static/images/OlympicLikeLogo/circles-qual/0b201a63-11fe-422e-b641-59c8ffc9762e.svg"
+                    alt="Circle 1"></th>
+                <th><img src="./static/images/OlympicLikeLogo/circles-qual/1359a3d5-9dba-4d16-abe2-3263e79ad535.svg"
+                    alt="Circle 2"></th>
+                <th><img src="./static/images/OlympicLikeLogo/circles-qual/7226b34e-acd7-47b3-b123-09283b6907d3.svg"
+                    alt="Circle 3"></th>
+                <th><img src="./static/images/OlympicLikeLogo/circles-qual/79662d5f-9390-4a26-94ef-b8e68d0df8b2.svg"
+                    alt="Circle 4"></th>
+                <th><img src="./static/images/OlympicLikeLogo/circles-qual/ca4d5ba9-fbea-49c2-ac94-01c60ce28a1d.svg"
+                    alt="Circle 5"></th>
+                <th><img src="./static/images/OlympicLikeLogo/circles-qual/d11c1a19-8a05-40e1-a882-f73210b1c777.svg"
+                    alt="Circle 6"></th>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">9</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7</span><span
+                    class="check">✓</span></td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-35.png" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 8: <span class="model">Gemini-<span class="gemini-blue">1.5</span>
+              Pro</span> often predicts "5" circles.</figcaption>
+
+        </div>
+      </div>
+  </section>
+  <!-- TASK 4 Ends -->
+
+
+
+  <hr>
+  <!-- TASK 5 Begins -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2">Task 5: Counting the nested squares <i class="fas fa-square"></i><i
+          class="fas fa-square"></i><i class="fas fa-square"></i></h2>
+
+
+      <div class="content">
+        <p>
+          Motivated by the findings that VLMs struggle in counting the intersected circles (Task 4), here, we arrange
+          the shapes
+          differently so that their edges do <em>not</em> intersect.
+          That is, each shape is nested entirely inside another. For completeness, we test squares in this task.
+        </p>
+
+        <h3 class="title is-4">Images</h3>
+        <p>
+          In a canvas of size C×C, we render N ∈ {2, 3, 4, 5} nested squares.
+          The outermost square is rendered first using a random edge length d and a line thickness ∈ {2, 3, 4}px.
+          The remaining N-1 squares are drawn using a size reduction factor, 0.75 × d and placed at a random coordinate
+          that
+          ensures they do not touch outer squares.
+          For each line thickness, we generate 10 images (where squares have different, random locations) to create 3 ×
+          10 = 30
+          images.
+          Repeating the process for all N values results in 4 × 30 = 120 images.
+        </p>
+
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/NestedSquares/benchmark_samples/gt_2_predicted_2_nested_squares_depth_2_image_2_thickness_3.svg"
+                alt="2 nested squares">
+              <figcaption>2 nested squares</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/NestedSquares/benchmark_samples/gt_3_predicted_3_nested_squares_depth_3_image_6_thickness_3.svg"
+                alt="3 nested squares">
+              <figcaption>3 nested squares</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/NestedSquares/benchmark_samples/gt_4_predicted_5_nested_squares_depth_4_image_7_thickness_3.svg"
+                alt="4 nested squares">
+              <figcaption>4 nested squares</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/NestedSquares/benchmark_samples/gt_5_predicted_1_nested_squares_depth_5_image_4_thickness_3.svg"
+                alt="5 nested squares">
+              <figcaption>5 nested squares</figcaption>
+            </figure>
+          </div>
+        </div>
+        <figcaption>Fig. 9: Examples of nested square images used in the task, showing different numbers of squares.
+        </figcaption>
+      </div>
+
+      <h3 class="title is-4">Prompts</h3>
+      <div class="content">
+        <p>
+          We ask each question using the following wording:
+        </p>
+        <ol>
+          <li><em>"Count the total number of squares in the image."</em></li>
+        </ol>
+        <p>
+          Where {shapes} is either "circles" or "pentagons" depending on the image.
+        </p>
+        <h3 class="title is-4">Groundtruth</h3>
+        <div class="content">
+          <p>
+            Answers are ∈ {2, 3, 4, 5} (random-baseline accuracy: 25%).
+          </p>
+        </div>
+
+
+        <h2 class="title is-3">Results</h2>
+        <p class="mb-4">
+          The following table shows the performance of the four models on the task of counting nested squares.
+        </p>
+        <table class="performance-table result-table">
+          <tr>
+            <th></th>
+            <th>
+              <div class="model-header">
+                <span class="model">GPT-<span class="gpt-green">4o</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Gemini-<span class="gemini-blue">1.5</span> Pro</span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <td>Squares</td>
+            <td class="rnumber">48.33</td>
+            <td class="rnumber">80.00</td>
+            <td class="rnumber">55.00</td>
+            <td class="highlight rnumber">87.50</td>
+          </tr>
+        </table>
+
+        <h2 class="title is-3">Qualitative samples</h2>
+      </div>
+
+      <div>
+
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>Count total number of squares in the image.</h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img
+                    src="./static/images/NestedSquares/QualSample/gt_4_Sonnet_5_Sonnet-3.5_4_gpt-4o_5_Gemini-1.5-Pro_5_nested_squares_depth_4_image_1_thickness_4.pdf.svg"
+                    alt="Nested Squares 1"></th>
+                <th><img
+                    src="./static/images/NestedSquares/QualSample/gt_4_Sonnet_5_Sonnet-3.5_4_gpt-4o_5_Gemini-1.5-Pro_5_nested_squares_depth_4_image_1_thickness_4.pdf.svg"
+                    alt="Nested Squares 2"></th>
+                <th><img
+                    src="./static/images/NestedSquares/QualSample/gt_4_Sonnet_5_Sonnet-3.5_4_gpt-4o_5_Gemini-1.5-Pro_5_nested_squares_depth_4_image_4_thickness_4.pdf.svg"
+                    alt="Nested Squares 3"></th>
+                <th><img
+                    src="./static/images/NestedSquares/QualSample/gt_4_Sonnet_5_Sonnet-3.5_4_gpt-4o_5_Gemini-1.5-Pro_5_nested_squares_depth_4_image_5_thickness_2.pdf.svg"
+                    alt="Nested Squares 4"></th>
+                <th><img
+                    src="./static/images/NestedSquares/QualSample/gt_5_Sonnet_4_Sonnet-3.5_4_gpt-4o_6_Gemini-1.5-Pro_5_nested_squares_depth_5_image_3_thickness_4.pdf.svg"
+                    alt="Nested Squares 5"></th>
+                <th><img
+                    src="./static/images/NestedSquares/QualSample/gt_5_Sonnet_4_Sonnet-3.5_4_gpt-4o_6_Gemini-1.5-Pro_5_nested_squares_depth_5_image_3_thickness_4.pdf.svg"
+                    alt="Nested Squares 6"></th>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6</span><span
+                    class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="check">✓</span></td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span></td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="check">✓</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span></td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-35.png" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 10: Only <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span> can count
+            the
+            squares in a majority of the images.</figcaption>
+        </div>
+      </div>
+  </section>
+  <!-- TASK 5 Ends -->
+
+
 
   <footer class="footer">
     <div class="container">
