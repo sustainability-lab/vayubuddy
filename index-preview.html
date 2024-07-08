@@ -995,6 +995,14 @@
     .special-word.ackn {
       color: #2980b9;
     }
+
+    .spacer {
+      height: 50px;
+    }
+
+    .spacer-2 {
+      height: 100px;
+    }
   </style>
 </head>
 
@@ -1271,11 +1279,10 @@
         </table>
 
 
-        <h2 class="title is-3">Qualitative samples</h2>
       </div>
 
       <div>
-
+        <h2 class="title is-3">Qualitative samples</h2>
         <div class="container is-max-desktop">
           <div class="frame">
             <div class="header">
@@ -1790,7 +1797,7 @@
         <h3 class="title is-4">Groundtruth</h3>
         <div class="content">
           <p>
-            Letters need to match predicted letters exactly (case-sensitive).
+            Letters need to match predicted letters exactly (case-insensitive).
           </p>
         </div>
 
@@ -1854,12 +1861,9 @@
             <td class="rnumber">89.22</td>
           </tr>
         </table>
-
-        <h2 class="title is-3">Qualitative samples</h2>
       </div>
-
       <div>
-
+        <h2 class="title is-3">Qualitative samples</h2>
         <div class="container is-max-desktop">
           <div class="frame">
             <div class="header">
@@ -2148,10 +2152,10 @@
           </tr>
         </table>
 
-        <h2 class="title is-3">Qualitative samples</h2>
       </div>
 
       <div>
+        <h2 class="title is-3">Qualitative samples</h2>
 
         <div class="container is-max-desktop">
           <div class="frame">
@@ -2393,11 +2397,11 @@
           </tr>
         </table>
 
-        <h2 class="title is-3">Qualitative samples</h2>
       </div>
 
       <div>
 
+        <h2 class="title is-3">Qualitative samples</h2>
         <div class="container is-max-desktop">
           <div class="frame">
             <div class="header">
@@ -2517,6 +2521,736 @@
       </div>
   </section>
   <!-- TASK 5 Ends -->
+
+
+
+
+  <hr>
+  <!-- TASK 6 Begins -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2">Task 6: Counting the rows and columns of a grid <i class="fas fa-th"></i></h2>
+
+
+      <div class="content">
+        <p>
+          The results from prior tasks show VLMs cannot always count shapes that are overlapping (Task 4) or nested
+          (Task 5).
+          What about adjacent shapes? Here, we tile up shapes (specifically, squares) into a grid and challenge VLMs to
+          count—a
+          task that is supposedly simple to VLMs given their remarkable performance (≥ 90% accuracy) on DocVQA, which
+          includes
+          many questions with tables.
+          To simplify the task, we ask models to count the number of rows and columns in a given table.
+        </p>
+
+        <h3 class="title is-4">Images</h3>
+        <p>
+          A grid may have N×N, N×N', or N'×N cells, where N∈{3, 4, 5, 6, 7, 8, 9} and N' = N + 1.
+          Each grid is rendered with two different line-thicknesses on a canvas of size C×C where C∈{500, 1250, 2000}px.
+          Besides empty grids, we also replicate the procedure to make grids contain text (which is more common in
+          real-world
+          tables) where each cell contains a single random word.
+          Two versions combined have 2×222 = 444 images.
+        </p>
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/CountGridRowColumns/GridExamples/text_grid_3x3_2000_10.svg" alt="Text grid 3x3">
+              <figcaption>Text grid (3x3)</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/CountGridRowColumns/GridExamples/text_grid_3x4_2000_10.svg" alt="Text grid 3x4">
+              <figcaption>Text grid (3x4)</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/CountGridRowColumns/GridExamples/blank_grid_4x4_2000_20.svg"
+                alt="Empty grid 4x4">
+              <figcaption>Empty grid (4x4)</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img src="./static/images/CountGridRowColumns/GridExamples/blank_grid_4x5_2000_20.svg"
+                alt="Empty grid 4x5">
+              <figcaption>Empty grid (4x5)</figcaption>
+            </figure>
+          </div>
+        </div>
+        <figcaption>Fig. 9: Examples of grid images used in the task, showing text-filled and empty grids with various
+          dimensions.
+        </figcaption>
+      </div>
+
+      <h3 class="title is-4">Prompts</h3>
+      <div class="content">
+        <p>
+          We ask each question using two different wordings:
+        </p>
+        <ol>
+          <li><em>"Count the number of rows and columns and answer with numbers in curly brackets. For example, rows={5}
+              columns={6}"</em></li>
+          <li><em>"How many rows and columns are in the table? Answer with only the numbers in a pair (row, column),
+              e.g.,
+              (5,6)"</em></li>
+        </ol>
+
+        <h3 class="title is-4">Groundtruth</h3>
+        <div class="content">
+          <p>
+            Answers include both the number of rows and columns. An answer is correct when both column and row counts
+            are
+            correctly predicted.
+          </p>
+        </div>
+
+        <h2 class="title is-3">Results</h2>
+        <p class="mb-4">
+          The following table shows the performance of the four models on the task of counting rows and columns in
+          grids.
+        </p>
+        <table class="performance-table results-table">
+          <tr>
+            <th>Grid type</th>
+            <th>
+              <div class="model-header">
+                <span class="model">GPT-<span class="gpt-green">4o</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Gemini-<span class="gemini-blue">1.5</span> Pro</span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <td>Blank</td>
+            <td class="rnumber">26.13</td>
+            <td class="rnumber">25.75</td>
+            <td class="rnumber">25.00</td>
+            <td class="rnumber">59.84</td>
+          </tr>
+          <tr>
+            <td>Text</td>
+            <td class="highlight rnumber">53.03</td>
+            <td class="highlight rnumber">45.83</td>
+            <td class="highlight rnumber">47.34</td>
+            <td class="highlight rnumber">88.68</td>
+          </tr>
+          <tr>
+            <td><strong>Average</strong></td>
+            <td class="rnumber">39.58</td>
+            <td class="rnumber">35.79</td>
+            <td class="rnumber">36.17</td>
+            <td class="rnumber">74.26</td>
+          </tr>
+        </table>
+
+      </div>
+
+      <div>
+        <h2 class="title is-3">Qualitative samples</h2>
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>Count the number of rows and columns and answer with numbers in curly brackets. For example, rows={5}
+                columns={6}
+              </h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_4x5_2000_20.svg" alt="Grid 1">
+                </th>
+                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_6x7_2000_20.svg" alt="Grid 2">
+                </th>
+                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_7x6_2000_20.svg" alt="Grid 3">
+                </th>
+                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_8x7_1250_20.svg" alt="Grid 4">
+                </th>
+                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_5x6_2000_20.svg" alt="Grid 5">
+                </th>
+                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_7x8_2000_10.svg" alt="Grid 6">
+                </th>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×5</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10×10</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">10×10</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×5</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×8</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">9×9</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">9×12</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×7</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">8×7</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">8×8</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-35.png" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 12: Examples from the benchmark show that models consistently fail at counting rows and
+            columns of
+            blank grids.</figcaption>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div>
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>How many rows and columns are in the table? Answer with only the numbers in a pair (row, column),
+                e.g., (5,6).</h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_4x4_500_20.svg" alt="Grid 1">
+                </th>
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_4x5_2000_20.svg" alt="Grid 2">
+                </th>
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_5x4_500_20.svg" alt="Grid 3">
+                </th>
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_5x6_2000_20.svg" alt="Grid 4">
+                </th>
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_6x7_2000_20.svg" alt="Grid 5">
+                </th>
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_7x7_2000_20.svg" alt="Grid 6">
+                </th>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×8</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×8</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×8</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×8</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×5</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">8×7</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">6×7</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
+                    class="check">✓</span>
+                </td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-35.png" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 13: When text is included in the cells of the grid, the performance of all VLMs improves,
+            especially
+            <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>.
+          </figcaption>
+        </div>
+
+      </div>
+  </section>
+  <!-- TASK 6 Ends -->
+
+
+  <hr>
+  <!-- TASK 7 Begins -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-2">Task 7: Following single-colored paths <i class="fas fa-subway"></i></h2>
+
+
+
+      <div class="content">
+        <p>
+          It is important for VLMs to be able to follow paths in order to read maps or charts, interpret graphs, and
+          understand
+          user notations (e.g., arrows) in input images. To assess path-following capability, this task asks models to
+          count the
+          unique-color paths between two given stations in a simplified subway map. This is another easy-to-humans task
+          that
+          challenges VLMs significantly.
+        </p>
+
+        <h3 class="title is-4">Images</h3>
+        <p>
+          We create each subway map on an image of size C×C, where C ∈ {512, 1024}px. We write 4 station names (A, B, C,
+          D) at 4
+          fixed coordinates. We divide the canvas into an invisible grid of 18×18 cells and initialize 3 path-starting
+          points
+          C/18px away from each station. We draw a path, using the depth-first search algorithm starting from a random
+          station
+          and a random starting point, where a valid move is one cell in any direction: North, south, east or west. We
+          repeat
+          the process so that each station has exactly N ∈ {1, 2, 3} outgoing paths, for a total of 180 maps.
+        </p>
+
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/SubwayConnections/pixels_512_linewidth_10_path_1_921cbd8a-9833-433a-9104-9b568bf10ac7.svg"
+                alt="Station with 1 path">
+              <figcaption>Station with 1 path, and linewidth 10px</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/SubwayConnections/pixels_1024_linewidth_20_path_2_b982336c-68f6-4fce-9f7b-81b789b7c60a.svg"
+                alt="Station with 2 paths">
+              <figcaption>Station with 2 paths, and linewidth 20px</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/SubwayConnections/pixels_1024_linewidth_20_path_2_b982336c-68f6-4fce-9f7b-81b789b7c60a.svg"
+                alt="Station with 2 paths">
+              <figcaption>Station with 2 paths, and linewidth 20px</figcaption>
+            </figure>
+          </div>
+          <div class="column is-half">
+            <figure class="image">
+              <img
+                src="./static/images/SubwayConnections/pixels_1024_linewidth_10_path_3_c06eac36-a4d1-405f-b445-9b9790b0366c.svg"
+                alt="Station with 3 paths">
+              <figcaption>Station with 3 paths, and linewidth 10px</figcaption>
+            </figure>
+          </div>
+        </div>
+        <figcaption>Fig. 14: Examples of subway map images used in the task, showing different numbers of paths and
+          variations
+          in path thickness.</figcaption>
+      </div>
+
+      <h3 class="title is-4">Prompts</h3>
+      <div class="content">
+        <p>
+          We ask each question using two different wordings:
+        </p>
+        <ol>
+          <li><em>"How many single-colored paths go from A to C? Answer with a number in curly brackets, e.g., {3}"</em>
+          </li>
+          <li><em>"Count the one-colored routes that go from A to C. Answer with a number in curly brackets, e.g.,
+              {3}."</em>
+          </li>
+        </ol>
+
+        <h3 class="title is-4">Groundtruth</h3>
+        <div class="content">
+          <p>
+            Answers are ∈ {0, 1, 2, 3} (random-baseline accuracy: 25%).
+          </p>
+        </div>
+
+        <h2 class="title is-3">Results</h2>
+        <p class="mb-4">
+          The following table shows the performance of the four models on the task of counting single-colored paths
+          between
+          stations.
+        </p>
+        <table class="performance-table results-table">
+          <tr>
+            <th>Paths</th>
+            <th>
+              <div class="model-header">
+                <span class="model">GPT-<span class="gpt-green">4o</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Gemini-<span class="gemini-blue">1.5</span> Pro</span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>
+              </div>
+            </th>
+            <th>
+              <div class="model-header">
+                <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td class="rnumber">67.50</td>
+            <td class="rnumber">85.41</td>
+            <td class="rnumber">23.75</td>
+            <td class="highlight rnumber">95.00</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="rnumber">44.37</td>
+            <td class="rnumber">28.75</td>
+            <td class="rnumber">37.18</td>
+            <td class="highlight rnumber">56.25</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="highlight rnumber">36.71</td>
+            <td class="rnumber">25.78</td>
+            <td class="rnumber">15.42</td>
+            <td class="rnumber">25.39</td>
+          </tr>
+          <tr>
+            <td><strong>Average</strong></td>
+            <td class="rnumber">45.89</td>
+            <td class="rnumber">40.01</td>
+            <td class="rnumber">23.78</td>
+            <td class="highlight rnumber">50.18</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <h2 class="title is-3">Qualitative samples</h2>
+        <div class="container is-max-desktop">
+          <div class="frame">
+            <div class="header">
+              <h2>How many single-color paths go from A to D? Answer with a number in curly brackets e.g. {3}</h2>
+            </div>
+            <table class="result-table">
+              <tr>
+                <th></th>
+                <th><img
+                    src="./static/images/SubwayConnections/appendix_figs/pixels_512_linewidth_20_path_1_e5198d80-d54f-4957-9ca9-c76a3a0bf654.svg"
+                    alt="Subway Map 1"></th>
+                <th><img
+                    src="./static/images/SubwayConnections/appendix_figs/pixels_1024_linewidth_10_path_1_9d3dd747-60f9-469f-a25b-66755fec568f.svg"
+                    alt="Subway Map 2"></th>
+                <th><img
+                    src="./static/images/SubwayConnections/appendix_figs/pixels_512_linewidth_10_path_2_97592c8d-7d89-41e5-ba2f-f03bacd4bd21.svg"
+                    alt="Subway Map 3"></th>
+                <th><img
+                    src="./static/images/SubwayConnections/appendix_figs/pixels_512_linewidth_20_path_2_931b8867-3028-48fc-a81f-f417f9261d9d.svg"
+                    alt="Subway Map 4"></th>
+                <th><img
+                    src="./static/images/SubwayConnections/appendix_figs/pixels_1024_linewidth_20_path_3_79870125-c92a-4780-81b3-aab8f8d7c4c6.svg"
+                    alt="Subway Map 5"></th>
+                <th><img
+                    src="./static/images/SubwayConnections/appendix_figs/pixels_512_linewidth_20_path_3_941abb65-fa92-45ac-9ecc-d155646cbbe6.svg"
+                    alt="Subway Map 6"></th>
+              </tr>
+              <tr class="light-gray">
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
+                    class="model-logo" alt="GPT-4o"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
+                    class="model-logo" alt="Gemini-1.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr class="light-gray">
+                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
+                    class="model-logo" alt="Sonnet-3"></th>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
+                    class="model-logo" alt="Sonnet-3.5"></td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                    class="cross">✗</span>
+                </td>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
+                    class="cross">✗</span>
+                </td>
+              </tr>
+            </table>
+            <div class="legend">
+              <div class="legend-item">
+                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
+                    class="gpt-green">4o</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
+                    class="gemini-blue">1.5</span>
+                  Pro</span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet3-brown">3</span></span>
+              </div>
+              <div class="legend-item">
+                <img src="static/images/claude-35.png" alt="Sonnet-3"> <span class="model">Sonnet-<span
+                    class="sonnet35-brown">3.5</span></span>
+              </div>
+            </div>
+          </div>
+          <figcaption>Fig. 15: Some VLMs (<span class="model">Gemini-<span class="gemini-blue">1.5</span></span>,
+            <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>)
+            surprisingly fail in even extremely easy cases (leftmost).
+            As the
+            number of paths exiting each station increases, VLMs tend to perform worse.
+          </figcaption>
+
+        </div>
+      </div>
+  </section>
+  <!-- TASK 7 Ends -->
+
 
 
 
