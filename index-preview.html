@@ -1003,6 +1003,55 @@
     .spacer-2 {
       height: 100px;
     }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .task-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.3s ease;
+      height: 250px;
+      /* Fixed height for all boxes */
+    }
+
+    .task-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .task-icon {
+      width: 100px;
+      /* Fixed width */
+      height: 100px;
+      /* Fixed height */
+      object-fit: contain;
+      /* Maintain aspect ratio */
+      margin-bottom: 10px;
+    }
+
+    .task-number {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .task-description {
+      font-size: 14px;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -1029,25 +1078,23 @@
               <span class="author-block">
 
                 <span class="author-block">
-
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">
-                      Pooyan Rahmanzadehgervi
-                      <sup>1</sup>,</span>
+                      Pooyan Rahmanzadehgervi<sup>1,*</sup>,</span>
                     <span class="author-block">
-                      Logan Bolton<sup>1</sup>,</span>
+                      Logan Bolton<sup>1,*</sup>,</span>
                     <span class="author-block">
                       <a href="https://taesiri.ai">Mohammad Reza Taesiri</a><sup>2</sup>,</span>
                     <span class="author-block">
                       <a href="https://anhnguyen.me/research/">Anh Nguyen</a><sup>1</sup>
                     </span>
-
+                  </div>
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>*</sup>Equal contribution</span>
                   </div>
                   <div class="is-size-5 publication-authors">
                     <span class="author-block"><sup>1</sup>Auburn University,</span>
                     <span class="author-block"><sup>2</sup>University of Alberta,</span>
-                  </div>
-                  <div class="is-size-5 publication-authors">
                   </div>
                 </span>
 
@@ -1130,18 +1177,56 @@
   </section>
 
   <section class="section">
-
+    <div class="container">
+      <div class="task-grid">
+        <a href="#task1" class="task-box">
+          <img src="static/images/logo/two_lines.jpg" alt="Task 1 Icon" class="task-icon">
+          <span class="task-number">Task 1</span>
+          <span class="task-description">Line Intersections</span>
+        </a>
+        <a href="#task2" class="task-box">
+          <img src="static/images/logo/two_circles.png" alt="Task 2 Icon" class="task-icon">
+          <span class="task-number">Task 2</span>
+          <span class="task-description">Two Circles</span>
+        </a>
+        <a href="#task3" class="task-box">
+          <img src="static/images/logo/circled_letter.png" alt="Task 3 Icon" class="task-icon">
+          <span class="task-number">Task 3</span>
+          <span class="task-description">Circled Letter</span>
+        </a>
+        <a href="#task4" class="task-box">
+          <img src="static/images/logo/olympic2.svg" alt="Task 4 Icon" class="task-icon">
+          <span class="task-number">Task 4</span>
+          <span class="task-description">Overlapping Shapes</span>
+        </a>
+        <a href="#task5" class="task-box">
+          <img src="static/images/logo/nested_squares_logo.svg" alt="Task 5 Icon" class="task-icon">
+          <span class="task-number">Task 5</span>
+          <span class="task-description">Nested Squares</span>
+        </a>
+        <a href="#task6" class="task-box">
+          <img src="static/images/logo/grid.svg" alt="Task 6 Icon" class="task-icon">
+          <span class="task-number">Task 6</span>
+          <span class="task-description">Counting Grid</span>
+        </a>
+        <a href="#task7" class="task-box">
+          <img src="static/images/logo/subway.svg" alt="Task 7 Icon" class="task-icon">
+          <span class="task-number">Task 7</span>
+          <span class="task-description">Subway Map</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   </section>
 
 
 
-  <hr>
 
 
 
   <!-- TASK 1 Begins -->
-  <section class="section">
+  <section id="task1" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 1: Counting line intersections <i class="fas fa-chart-line"></i></h2>
@@ -1405,7 +1490,7 @@
 
   <hr>
   <!-- TASK 2 Begins -->
-  <section class="section">
+  <section id="task2" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 2: Two circles <i class="fas fa-circle"></i><i class="fas fa-circle"></i></h2>
@@ -1698,7 +1783,7 @@
 
   <hr>
   <!-- TASK 3 Begins -->
-  <section class="section">
+  <section id="task3" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 3: The circled letter <i class="fas fa-circle"></i><i class="fas fa-font"></i></h2>
@@ -2016,7 +2101,7 @@
 
   <hr>
   <!-- TASK 4 Begins -->
-  <section class="section">
+  <section id="task4" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 4: Counting overlapping shapes <i class="fas fa-circle"></i><i
@@ -2275,7 +2360,7 @@
 
   <hr>
   <!-- TASK 5 Begins -->
-  <section class="section">
+  <section id="task5" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 5: Counting the nested squares <i class="fas fa-square"></i><i
@@ -2527,7 +2612,7 @@
 
   <hr>
   <!-- TASK 6 Begins -->
-  <section class="section">
+  <section id="task6" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 6: Counting the rows and columns of a grid <i class="fas fa-th"></i></h2>
@@ -2950,7 +3035,7 @@
 
   <hr>
   <!-- TASK 7 Begins -->
-  <section class="section">
+  <section id="task7" class="section">
     <div class="container is-max-desktop">
 
       <h2 class="title is-2">Task 7: Following single-colored paths <i class="fas fa-subway"></i></h2>
