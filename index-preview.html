@@ -1010,13 +1010,16 @@
       margin-top: 20px;
     }
 
+
     .task-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background-color: #f8f8f8;
-      border: 1px solid #ddd;
+      /* Very light gray background */
+      border: 1px solid #e0e0e0;
+      /* Light gray border */
       border-radius: 8px;
       padding: 15px;
       text-decoration: none;
@@ -1029,6 +1032,8 @@
     .task-box:hover {
       transform: translateY(-3px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      background-color: #f0f0f0;
+      /* Slightly darker on hover */
     }
 
     .task-icon {
@@ -1052,40 +1057,17 @@
     }
 
     /* Task-specific colors */
-    .task-box:nth-child(1) {
-      background-color: #e74c3c;
-    }
-
-    .task-box:nth-child(2) {
-      background-color: #3498db;
-    }
-
-    .task-box:nth-child(3) {
-      background-color: #2ecc71;
-    }
-
-    .task-box:nth-child(4) {
-      background-color: #f39c12;
-    }
-
-    .task-box:nth-child(5) {
-      background-color: #9b59b6;
-    }
-
-    .task-box:nth-child(6) {
-      background-color: #1abc9c;
-    }
-
-    .task-box:nth-child(7) {
-      background-color: #e67e22;
-    }
-
     .task-box:nth-child(n) {
-      color: white;
+      background-color: #f8f8f8;
+      /* Very light gray for all boxes */
+      color: #333;
+      /* Dark gray text for all boxes */
     }
+
 
     .task-box:nth-child(n) .task-description {
-      color: rgba(255, 255, 255, 0.8);
+      color: #666;
+      /* Medium gray for description text */
     }
 
 
@@ -1101,6 +1083,14 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+    }
+
+    .task-icon {
+      width: 96px;
+      /* Adjust size as needed */
+      height: 96px;
+      vertical-align: middle;
+      margin-left: 5px;
     }
   </style>
 </head>
@@ -1231,37 +1221,37 @@
     <div class="container">
       <div class="task-grid">
         <a href="#task1" class="task-box">
-          <img src="static/images/logo/two_lines.jpg" alt="Task 1 Icon" class="task-icon">
+          <img src="static/images/logo/two_lines.svg" alt="Task 1 Icon" class="task-icon">
           <span class="task-number">Task 1</span>
           <span class="task-description">Line Intersections</span>
         </a>
         <a href="#task2" class="task-box">
-          <img src="static/images/logo/two_circles.png" alt="Task 2 Icon" class="task-icon">
+          <img src="static/images/logo/two-colored-circles-svg.svg" alt="Task 2 Icon" class="task-icon">
           <span class="task-number">Task 2</span>
           <span class="task-description">Two Circles</span>
         </a>
         <a href="#task3" class="task-box">
-          <img src="static/images/logo/circled_letter.png" alt="Task 3 Icon" class="task-icon">
+          <img src="static/images/logo/acknowledgement-svg.svg" alt="Task 3 Icon" class="task-icon">
           <span class="task-number">Task 3</span>
           <span class="task-description">Circled Letter</span>
         </a>
         <a href="#task4" class="task-box">
-          <img src="static/images/logo/olympic2.svg" alt="Task 4 Icon" class="task-icon">
+          <img src="static/images/logo/olympic-rings-svg.svg" alt="Task 4 Icon" class="task-icon">
           <span class="task-number">Task 4</span>
           <span class="task-description">Overlapping Shapes</span>
         </a>
         <a href="#task5" class="task-box">
-          <img src="static/images/logo/nested_squares_logo.svg" alt="Task 5 Icon" class="task-icon">
+          <img src="static/images/logo/nested-squares-svg.svg" alt="Task 5 Icon" class="task-icon">
           <span class="task-number">Task 5</span>
           <span class="task-description">Nested Squares</span>
         </a>
         <a href="#task6" class="task-box">
-          <img src="static/images/logo/grid.svg" alt="Task 6 Icon" class="task-icon">
+          <img src="static/images/logo/grid-3x4-svg.svg" alt="Task 6 Icon" class="task-icon">
           <span class="task-number">Task 6</span>
           <span class="task-description">Counting Grid</span>
         </a>
         <a href="#task7" class="task-box">
-          <img src="static/images/logo/subway.svg" alt="Task 7 Icon" class="task-icon">
+          <img src="static/images/logo/subway-map-svg.svg" alt="Task 7 Icon" class="task-icon">
           <span class="task-number">Task 7</span>
           <span class="task-description">Subway Map</span>
         </a>
@@ -1280,7 +1270,8 @@
   <section id="task1" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 1: Counting line intersections <i class="fas fa-chart-line"></i></h2>
+      <h2 class="title is-2">Task 1: Counting line intersections <img src="static/images/logo/two_lines.svg"
+          alt="Two intersecting lines" class="task-icon"></h2>
 
       <div class="content">
         <p>
@@ -1544,7 +1535,10 @@
   <section id="task2" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 2: Two circles <i class="fas fa-circle"></i><i class="fas fa-circle"></i></h2>
+      <h2 class="title is-2">Task 2: Two circles <img src="static/images/logo/two-colored-circles-svg.svg"
+          alt="Two intersecting lines" class="task-icon"></h2>
+
+
 
       <div class="content">
         <p>
@@ -1837,7 +1831,10 @@
   <section id="task3" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 3: The circled letter <i class="fas fa-circle"></i><i class="fas fa-font"></i></h2>
+      <h2 class="title is-2">Task 3: The circled letter <img src="static/images/logo/acknowledgement-svg.svg"
+          alt="Two intersecting lines" class="task-icon"></h2>
+
+
 
       <div class="content">
         <p>
@@ -2158,8 +2155,10 @@
   <section id="task4" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 4: Counting overlapping shapes <i class="fas fa-circle"></i><i
-          class="fas fa-circle"></i><i class="fas fa-circle"></i></h2>
+      <h2 class="title is-2">Task 4: Counting overlapping shapes <img src="static/images/logo/nested-squares-svg.svg"
+          alt="Two intersecting lines" class="task-icon"></h2>
+
+
 
       <div class="content">
         <p>
@@ -2422,8 +2421,9 @@
   <section id="task5" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 5: Counting the nested squares <i class="fas fa-square"></i><i
-          class="fas fa-square"></i><i class="fas fa-square"></i></h2>
+
+      <h2 class="title is-2">Task 5: Counting the nested squares <img src="static/images/logo/olympic-rings-svg.svg"
+          alt="Two intersecting lines" class="task-icon"></h2>
 
 
       <div class="content">
@@ -2673,7 +2673,8 @@
   <section id="task6" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 6: Counting the rows and columns of a grid <i class="fas fa-th"></i></h2>
+      <h2 class="title is-2">Task 6: Counting the rows and columns of a grid <img
+          src="static/images/logo/grid-3x4-svg.svg" alt="Two intersecting lines" class="task-icon"></h2>
 
 
       <div class="content">
@@ -3095,7 +3096,8 @@
   <section id="task7" class="section">
     <div class="container is-max-desktop">
 
-      <h2 class="title is-2">Task 7: Following single-colored paths <i class="fas fa-subway"></i></h2>
+      <h2 class="title is-2">Task 7: Following single-colored paths <img src="static/images/logo/subway-map-svg.svg"
+          alt="Two intersecting lines" class="task-icon"></h2>
 
 
 
