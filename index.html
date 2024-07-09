@@ -1244,6 +1244,27 @@
         height: 20px;
       }
     }
+
+    @media screen and (max-width: 768px) {
+      .columns.is-mobile {
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+        margin-top: -0.75rem;
+      }
+
+      .columns.is-mobile>.column {
+        padding: 0.75rem;
+      }
+
+      .image img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      figcaption {
+        font-size: 0.8em;
+      }
+    }
   </style>
 </head>
 
@@ -1444,7 +1465,7 @@
           sampled to create two plots that intersect at exactly 0, 1 or 2 points. See Appendix A for more details.
         </p>
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img src="./static/images/LinePlots/benchmark_samples/gt_0_pred_0_image_47_thickness_2.svg"
@@ -1732,7 +1753,7 @@
           <li>Canvas sizes: 384, 769, and 1155 pixels</li>
         </ul>
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img
@@ -2053,7 +2074,7 @@
           respectively. We ensure each letter to be circled fits completely the oval.
         </p>
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img
@@ -2364,7 +2385,7 @@
         </p>
 
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img
@@ -2618,7 +2639,7 @@
           images.
           Repeating the process for all N values results in 4 × 30 = 120 images.
         </p>
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img
@@ -2870,7 +2891,7 @@
           tables) where each cell contains a single random word.
           Two versions combined have 2×222 = 444 images.
         </p>
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img src="./static/images/CountGridRowColumns/GridExamples/text_grid_3x3_2000_10.svg" alt="Text grid 3x3">
@@ -3297,7 +3318,7 @@
           the process so that each station has exactly N ∈ {1, 2, 3} outgoing paths, for a total of 180 maps.
         </p>
 
-        <div class="columns is-multiline">
+        <div class="columns is-multiline is-mobile">
           <div class="column is-3">
             <figure class="image">
               <img
