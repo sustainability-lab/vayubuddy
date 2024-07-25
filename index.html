@@ -1555,26 +1555,25 @@
           <div class="content has-text-justified">
 
             <p>
-              Large language models with vision capabilities (VLMs), e.g., <span class="model">GPT-<span
+              While large language models with vision capabilities (VLMs), e.g., <span class="model">GPT-<span
                   class="gpt-green">4o</span></span> and <span class="model">Gemini-<span class="gemini-blue">1.5</span>
-                Pro</span>
-              are powering various image-text applications and scoring high on many vision-understanding benchmarks. We
-              propose
-              <span class="model">Blind<span class="blindtest-purple">Test</span></span>, a suite of 7 visual tasks very
-              easy to
-              humans such as identifying (a) whether two circles overlap; (b) whether two lines intersect; (c) which
-              letter is being
-              circled in a word; and (d) counting the number of circles in an Olympic-like logo. Surprisingly, four
-              state-of-the-art
-              VLMs are, on average, only 58.12% accurate on our benchmark where the human expected accuracy is 100%.
+                Pro</span>,
+              are powering various image-text applications and scoring high on many vision-understanding benchmarks, we
+              find that
+              they are surprisingly still struggling with low-level vision tasks that are easy to humans.
+              Specifically, on <span class="model">Blind<span class="blindtest-purple">Test</span></span>, our suite of
+              7 very
+              simple tasks such as identifying (a) whether two circles overlap; (b) whether two lines intersect; (c)
+              which letter is
+              being circled in a word; and (d) counting circles in an Olympic-like logo, four state-of-the-art VLMs are
+              only 58.57%
+              accurate on average.
               <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span> performs the best at 74.01%
-              accuracy. On <span class="model">Blind<span class="blindtest-purple">Test</span></span>, VLMs struggle
-              with tasks that require precise
-              spatial information and simple counting (from 0 to 2, 2 to 5, or 5 to 10), sometimes providing an
-              impression of a
-              person with <a href="https://en.wikipedia.org/wiki/Myopia" target="_blank">myopia</a> seeing fine details
-              as blurry
-              and making educated guesses.
+              accuracy, but
+              this is still far from the human expected accuracy of 100%.
+              Across different image resolutions and line widths, VLMs consistently struggle with tasks that require
+              precise spatial
+              information and recognizing geometric primitives that overlap or are close together.
             </p>
 
           </div>
@@ -1627,7 +1626,7 @@
                   <div class="task-icon-container"><img src="static/images/logo/subway-map-svg.svg" alt="Path Following"
                       class="task-icon-small"></div>
                 </th>
-                <th>Mean</th>
+                <th style="font-weight: bold; text-align: center;">Mean</th>
               </tr>
             </thead>
             <tbody>
