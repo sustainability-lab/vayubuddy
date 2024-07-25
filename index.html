@@ -1373,6 +1373,86 @@
         height: 16px;
       }
     }
+
+
+
+    .task-icon-small {
+      width: 28px;
+      /* Increase from 20px */
+      height: 28px;
+      /* Increase from 20px */
+    }
+
+    .task-icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      /* Increase from 30px to accommodate larger icons */
+    }
+
+    /* Adjust table cell padding if needed */
+    .performance-table th,
+    .performance-table td {
+      padding: 6px;
+      /* Slightly increase padding if necessary */
+    }
+
+    .content-wrapper {
+      max-width: 1200px;
+      /* Adjust this value as needed */
+      margin: 0 auto;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .performance-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .performance-table th,
+    .performance-table td {
+      padding: 0.5rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .task-icon-small {
+      width: 24px;
+      height: 24px;
+    }
+
+    .model-logo-small {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    @media screen and (max-width: 768px) {
+      .performance-table {
+        font-size: 0.8rem;
+      }
+
+      .performance-table th,
+      .performance-table td {
+        padding: 0.3rem;
+      }
+
+      .task-icon-small {
+        width: 20px;
+        height: 20px;
+      }
+
+      .model-logo-small {
+        width: 16px;
+        height: 16px;
+      }
+    }
   </style>
 </head>
 
@@ -1502,6 +1582,141 @@
       </div>
     </div>
   </section>
+
+
+  <hr>
+  <section class="section">
+    <div class="container">
+      <div class="content-wrapper">
+        <h2 class="title is-3 has-text-centered">Overview of All Tasks</h2>
+        <div class="table-container">
+          <table class="performance-table results-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/two_lines.svg" alt="Line Intersect"
+                      class="task-icon-small"></div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/two-colored-circles-svg.svg"
+                      alt="Two Circles" class="task-icon-small"></div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/acknowledgement-svg.svg"
+                      alt="Circled Letter" class="task-icon-small"></div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/three-circles-svg.svg"
+                      alt="Olympic Rings" class="task-icon-small"></div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/overlapping-pentagons-svg.svg"
+                      alt="Pentagon" class="task-icon-small"></div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/nested-squares-svg.svg"
+                      alt="Nested Squares" class="task-icon-small"></div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/grid-3x4-svg.svg" alt="Grid"
+                      class="task-icon-small">
+                  </div>
+                </th>
+                <th>
+                  <div class="task-icon-container"><img src="static/images/logo/subway-map-svg.svg" alt="Path Following"
+                      class="task-icon-small"></div>
+                </th>
+                <th>Mean</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Random</td>
+                <td class="rnumber">33.33</td>
+                <td class="rnumber">50.00</td>
+                <td class="rnumber">5.77</td>
+                <td class="rnumber">20.00</td>
+                <td class="rnumber">20.00</td>
+                <td class="rnumber">25.00</td>
+                <td class="rnumber">4.55</td>
+                <td class="rnumber">33.33</td>
+                <td class="rnumber">24.00</td>
+              </tr>
+              <tr>
+                <td><img src="static/images/chatgpt-icon.svg" alt="GPT-4o" class="model-logo-small"></td>
+                <td class="rnumber">41.61</td>
+                <td class="rnumber">72.67</td>
+                <td class="rnumber">70.18</td>
+                <td class="rnumber">42.50</td>
+                <td class="rnumber">17.50</td>
+                <td class="rnumber">55.83</td>
+                <td class="rnumber">39.58</td>
+                <td class="rnumber">47.89</td>
+                <td class="rnumber">48.47</td>
+              </tr>
+              <tr>
+                <td><img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5" class="model-logo-small"></td>
+                <td class="rnumber">66.94</td>
+                <td class="highlight rnumber">92.78</td>
+                <td class="highlight rnumber">92.81</td>
+                <td class="highlight rnumber">87.08</td>
+                <td class="rnumber">19.37</td>
+                <td class="rnumber">80.00</td>
+                <td class="rnumber">39.39</td>
+                <td class="rnumber">41.60</td>
+                <td class="rnumber">65.00</td>
+              </tr>
+              <tr>
+                <td><img src="static/images/claude-ai-icon.svg" alt="Sonnet-3" class="model-logo-small"></td>
+                <td class="rnumber">43.41</td>
+                <td class="rnumber">84.52</td>
+                <td class="rnumber">73.34</td>
+                <td class="rnumber">31.66</td>
+                <td class="rnumber">9.79</td>
+                <td class="rnumber">65.00</td>
+                <td class="rnumber">36.17</td>
+                <td class="rnumber">23.24</td>
+                <td class="rnumber">45.89</td>
+              </tr>
+              <tr>
+                <td><img src="static/images/claude-35.png" alt="Sonnet-3.5" class="model-logo-small"></td>
+                <td class="highlight rnumber">75.36</td>
+                <td class="rnumber">91.66</td>
+                <td class="rnumber">89.22</td>
+                <td class="rnumber">44.16</td>
+                <td class="highlight rnumber">77.29</td>
+                <td class="highlight rnumber">92.08</td>
+                <td class="highlight rnumber">74.26</td>
+                <td class="highlight rnumber">55.53</td>
+                <td class="highlight rnumber">74.94</td>
+              </tr>
+              <tr>
+                <td><strong>Mean</strong></td>
+                <td class="rnumber">56.84</td>
+                <td class="rnumber">85.41</td>
+                <td class="rnumber">81.39</td>
+                <td class="rnumber">51.35</td>
+                <td class="rnumber">30.99</td>
+                <td class="rnumber">73.29</td>
+                <td class="rnumber">47.35</td>
+                <td class="rnumber">42.06</td>
+                <td class="highlight rnumber">58.57</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption>Accuracy (%) of each model over 7 tasks. The mean accuracy over all four models is 58.57%,
+          substantially
+          better than random chance (24%), which is computed considering each task as a single-label, N-way
+          classification
+          problem. <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span> is the best (74.94%
+          accuracy)
+          but still far from the 100% expected accuracy.</figcaption>
+      </div>
+  </section>
+
+
 
   <section class="section">
     <div class="container">
@@ -3167,56 +3382,72 @@
                 <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
               </div>
             </th>
+            <th style="text-align: center;">Mean</th>
           </tr>
           <tr>
-            <td>Blank</td>
+            <td>Empty</td>
             <td class="rnumber">26.13</td>
-            <td class="rnumber">25.75</td>
+            <td class="rnumber">26.51</td>
             <td class="rnumber">25.00</td>
             <td class="rnumber">59.84</td>
+            <td class="rnumber">34.37</td>
           </tr>
           <tr>
             <td>Text</td>
             <td class="highlight rnumber">53.03</td>
-            <td class="highlight rnumber">45.83</td>
+            <td class="highlight rnumber">52.27</td>
             <td class="highlight rnumber">47.34</td>
             <td class="highlight rnumber">88.68</td>
+            <td class="highlight rnumber">60.33</td>
           </tr>
           <tr>
-            <td><strong>Average</strong></td>
+            <td><strong>Mean</strong></td>
             <td class="rnumber">39.58</td>
-            <td class="rnumber">35.79</td>
+            <td class="rnumber">39.39</td>
             <td class="rnumber">36.17</td>
             <td class="rnumber">74.26</td>
+            <td class="rnumber">47.35</td>
           </tr>
         </table>
 
       </div>
 
+
+
+      <div class="spacer"></div>
+
       <div>
-        <h2 class="title is-3">Qualitative samples</h2>
         <div class="container is-max-desktop">
           <div class="frame">
             <div class="header">
-              <h2>Count the number of rows and columns and answer with numbers in curly brackets. For example, rows={5}
-                columns={6}
-              </h2>
+              <h2>Count the number of rows and columns and answer with numbers in curly brackets. For example,
+                rows={5}
+                columns={6}.</h2>
             </div>
-            <table class="result-table  grid-table">
+            <table class="result-table grid-table">
               <tr>
                 <th></th>
-                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_4x5_2000_20.svg" alt="Grid 1">
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/blank_grid_4x5_2000_20.svg" alt="Grid 1">
                 </th>
-                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_6x7_2000_20.svg" alt="Grid 2">
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/blank_grid_6x7_2000_20.svg" alt="Grid 2">
                 </th>
-                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_7x6_2000_20.svg" alt="Grid 3">
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/blank_grid_7x6_2000_20.svg" alt="Grid 3">
                 </th>
-                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_8x7_1250_20.svg" alt="Grid 4">
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/blank_grid_8x7_1250_20.svg" alt="Grid 4">
                 </th>
-                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_5x6_2000_20.svg" alt="Grid 5">
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_3x4_500_20.svg" alt="Grid 5">
                 </th>
-                <th><img src="static/images/CountGridRowColumns/GridExamples/blank_grid_7x8_2000_10.svg" alt="Grid 6">
+                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_6x7_500_10.svg" alt="Grid 6">
                 </th>
+              </tr>
+              <tr>
+                <th style="text-align: center;">GT</th>
+                <td style="text-align: center;">4×5</td>
+                <td style="text-align: center;">6×7</td>
+                <td style="text-align: center;">7×6</td>
+                <td style="text-align: center;">8×7</td>
+                <td style="text-align: center;">3×4</td>
+                <td style="text-align: center;">6×7</td>
               </tr>
               <tr class="light-gray">
                 <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
@@ -3233,10 +3464,10 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
-                    class="cross">✗</span>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3×4</span><span
+                    class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
                     class="cross">✗</span>
                 </td>
               </tr>
@@ -3255,10 +3486,10 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">10×10</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3×4</span><span
                     class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">10×10</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×8</span><span
                     class="cross">✗</span>
                 </td>
               </tr>
@@ -3277,10 +3508,10 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">9×9</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">9×12</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
                     class="cross">✗</span>
                 </td>
               </tr>
@@ -3299,10 +3530,10 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">8×7</span><span
                     class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3×4</span><span
                     class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">8×8</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
                     class="cross">✗</span>
                 </td>
               </tr>
@@ -3327,147 +3558,7 @@
               </div>
             </div>
           </div>
-          <figcaption>Fig. 12: Examples from the benchmark show that models consistently fail at counting rows and
-            columns of
-            blank grids.</figcaption>
-        </div>
-      </div>
-
-      <div class="spacer"></div>
-
-      <div>
-        <div class="container is-max-desktop">
-          <div class="frame">
-            <div class="header">
-              <h2>How many rows and columns are in the table? Answer with only the numbers in a pair (row, column),
-                e.g., (5,6).</h2>
-            </div>
-            <table class="result-table grid-table">
-              <tr>
-                <th></th>
-                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_4x4_500_20.svg" alt="Grid 1">
-                </th>
-                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_4x5_2000_20.svg" alt="Grid 2">
-                </th>
-                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_5x4_500_20.svg" alt="Grid 3">
-                </th>
-                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_5x6_2000_20.svg" alt="Grid 4">
-                </th>
-                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_6x7_2000_20.svg" alt="Grid 5">
-                </th>
-                <th><img src="./static/images/CountGridRowColumns/GridExamples/text_grid_7x7_2000_20.svg" alt="Grid 6">
-                </th>
-              </tr>
-              <tr class="light-gray">
-                <th style="text-align: center; vertical-align: middle;"><img src="static/images/chatgpt-icon.svg"
-                    class="model-logo" alt="GPT-4o"></th>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×8</span><span
-                    class="cross">✗</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">7×8</span><span
-                    class="cross">✗</span>
-                </td>
-              </tr>
-              <tr>
-                <td style="text-align: center; vertical-align: middle;"><img src="static/images/google-gemini-icon.svg"
-                    class="model-logo" alt="Gemini-1.5"></td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×8</span><span
-                    class="cross">✗</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">7×8</span><span
-                    class="cross">✗</span>
-                </td>
-              </tr>
-              <tr class="light-gray">
-                <th style="text-align: center; vertical-align: middle;"><img src="static/images/claude-ai-icon.svg"
-                    class="model-logo" alt="Sonnet-3"></th>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×5</span><span
-                    class="cross">✗</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×6</span><span
-                    class="cross">✗</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
-                    class="cross">✗</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">8×7</span><span
-                    class="cross">✗</span>
-                </td>
-              </tr>
-              <tr>
-                <td style="text-align: center; vertical-align: middle;"><img src="static/images/claude-35.png"
-                    class="model-logo" alt="Sonnet-3.5"></td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4×5</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×4</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">5×6</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">6×7</span><span
-                    class="check">✓</span>
-                </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">7×7</span><span
-                    class="check">✓</span>
-                </td>
-              </tr>
-            </table>
-            <div class="legend">
-              <div class="legend-item">
-                <img src="static/images/chatgpt-icon.svg" alt="GPT-4o"> <span class="model">GPT-<span
-                    class="gpt-green">4o</span></span>
-              </div>
-              <div class="legend-item">
-                <img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5"> <span class="model">Gemini-<span
-                    class="gemini-blue">1.5</span>
-                  Pro</span>
-              </div>
-              <div class="legend-item">
-                <img src="static/images/claude-ai-icon.svg" alt="Sonnet-3"> <span class="model">Sonnet-<span
-                    class="sonnet3-brown">3</span></span>
-              </div>
-              <div class="legend-item">
-                <img src="static/images/claude-35.png" alt="Sonnet-3"> <span class="model">Sonnet-<span
-                    class="sonnet35-brown">3.5</span></span>
-              </div>
-            </div>
-          </div>
-          <figcaption>Fig. 13: When text is included in the cells of the grid, the performance of all VLMs improves,
+          <figcaption>Fig. 12: When text is included in the cells of the grid, the performance of all VLMs improves,
             especially
             <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>.
           </figcaption>
@@ -3600,6 +3691,7 @@
                 <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span>
               </div>
             </th>
+            <th style="text-align: center;">Mean</th>
           </tr>
           <tr>
             <td>1</td>
@@ -3607,6 +3699,7 @@
             <td class="rnumber">64.58</td>
             <td class="rnumber">22.91</td>
             <td class="highlight rnumber">92.91</td>
+            <td class="rnumber">59.16</td>
           </tr>
           <tr>
             <td>2</td>
@@ -3614,6 +3707,7 @@
             <td class="rnumber">38.35</td>
             <td class="rnumber">28.69</td>
             <td class="highlight rnumber">48.29</td>
+            <td class="rnumber">40.69</td>
           </tr>
           <tr>
             <td>3</td>
@@ -3621,13 +3715,15 @@
             <td class="rnumber">21.87</td>
             <td class="rnumber">18.12</td>
             <td class="rnumber">25.41</td>
+            <td class="rnumber">26.35</td>
           </tr>
           <tr>
             <td><strong>Mean</strong></td>
-            <td class="rnumber">46.08</td>
-            <td class="rnumber">36.84</td>
-            <td class="rnumber">22.66</td>
-            <td class="highlight rnumber">48.04</td>
+            <td class="rnumber">47.89</td>
+            <td class="rnumber">41.60</td>
+            <td class="rnumber">23.24</td>
+            <td class="highlight rnumber">55.53</td>
+            <td class="rnumber">42.06</td>
           </tr>
         </table>
       </div>
@@ -3675,11 +3771,11 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
                     class="cross">✗</span>
                 </td>
                 <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
-                    class="cross">✗</span>
+                    class="check">✓</span>
                 </td>
               </tr>
               <tr>
@@ -3697,10 +3793,10 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
                     class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
                     class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">5</span><span
                     class="cross">✗</span>
                 </td>
               </tr>
@@ -3719,10 +3815,10 @@
                 <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
                     class="cross">✗</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">4</span><span
+                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
                     class="cross">✗</span>
                 </td>
               </tr>
@@ -3742,10 +3838,10 @@
                     class="cross">✗</span>
                 </td>
                 <td style="text-align: center; vertical-align: middle;"><span class="label">2</span><span
-                    class="cross">✗</span>
+                    class="check">✓</span>
                 </td>
-                <td style="text-align: center; vertical-align: middle;"><span class="label">3</span><span
-                    class="cross">✗</span>
+                <td style="text-align: center; vertical-align: middle;"><span class="label">1</span><span
+                    class="check">✓</span>
                 </td>
               </tr>
             </table>
@@ -3769,7 +3865,7 @@
               </div>
             </div>
           </div>
-          <figcaption>Fig. 14: Some VLMs (<span class="model">Gemini-<span class="gemini-blue">1.5</span></span>,
+          <figcaption>Fig. 13: Some VLMs (<span class="model">Gemini-<span class="gemini-blue">1.5</span></span>,
             <span class="model">Sonnet-<span class="sonnet3-brown">3</span></span>)
             surprisingly fail in even extremely easy cases (leftmost).
             As the
@@ -3780,121 +3876,6 @@
       </div>
   </section>
   <!-- TASK 7 Ends -->
-  <hr>
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Overview of All Tasks</h2>
-      <div class="image-gallery">
-        <table class="performance-table results-table">
-          <thead>
-            <tr>
-              <th>Model</th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/two_lines.svg" alt="Line Intersect"
-                    class="task-icon-small"></div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/two-colored-circles-svg.svg"
-                    alt="Two Circles" class="task-icon-small"></div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/acknowledgement-svg.svg"
-                    alt="Circled Letter" class="task-icon-small"></div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/nested-squares-svg.svg"
-                    alt="Nested Squares" class="task-icon-small"></div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/three-circles-svg.svg" alt="Olympic Rings"
-                    class="task-icon-small"></div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/overlapping-pentagons-svg.svg"
-                    alt="Pentagon" class="task-icon-small"></div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/grid-3x4-svg.svg" alt="Grid"
-                    class="task-icon-small">
-                </div>
-              </th>
-              <th>
-                <div class="task-icon-container"><img src="static/images/logo/subway-map-svg.svg" alt="Path Following"
-                    class="task-icon-small"></div>
-              </th>
-              <th>Mean</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="static/images/chatgpt-icon.svg" alt="GPT-4o" class="model-logo-small"></td>
-              <td class="rnumber">41.61</td>
-              <td class="rnumber">72.67</td>
-              <td class="rnumber">70.18</td>
-              <td class="rnumber">55.83</td>
-              <td class="rnumber">42.50</td>
-              <td class="rnumber">17.50</td>
-              <td class="rnumber">39.58</td>
-              <td class="rnumber">46.08</td>
-              <td class="rnumber">48.25</td>
-            </tr>
-            <tr>
-              <td><img src="static/images/google-gemini-icon.svg" alt="Gemini-1.5" class="model-logo-small"></td>
-              <td class="rnumber">66.94</td>
-              <td class="highlight rnumber">92.78</td>
-              <td class="highlight rnumber">92.81</td>
-              <td class="rnumber">80.00</td>
-              <td class="highlight rnumber">87.08</td>
-              <td class="rnumber">19.37</td>
-              <td class="rnumber">39.39</td>
-              <td class="rnumber">36.84</td>
-              <td class="rnumber">64.40</td>
-            </tr>
-            <tr>
-              <td><img src="static/images/claude-ai-icon.svg" alt="Sonnet-3" class="model-logo-small"></td>
-              <td class="rnumber">43.41</td>
-              <td class="rnumber">84.52</td>
-              <td class="rnumber">73.34</td>
-              <td class="rnumber">65.00</td>
-              <td class="rnumber">31.66</td>
-              <td class="rnumber">9.79</td>
-              <td class="rnumber">36.17</td>
-              <td class="rnumber">22.66</td>
-              <td class="rnumber">45.81</td>
-            </tr>
-            <tr>
-              <td><img src="static/images/claude-35.png" alt="Sonnet-3.5" class="model-logo-small"></td>
-              <td class="highlight rnumber">75.36</td>
-              <td class="rnumber">91.66</td>
-              <td class="rnumber">89.22</td>
-              <td class="highlight rnumber">92.08</td>
-              <td class="rnumber">44.16</td>
-              <td class="highlight rnumber">77.29</td>
-              <td class="highlight rnumber">74.26</td>
-              <td class="highlight rnumber">48.04</td>
-              <td class="highlight rnumber">74.01</td>
-            </tr>
-            <tr>
-              <td><strong>Mean</strong></td>
-              <td class="rnumber">56.84</td>
-              <td class="rnumber">85.41</td>
-              <td class="rnumber">81.39</td>
-              <td class="rnumber">73.29</td>
-              <td class="rnumber">51.35</td>
-              <td class="rnumber">30.99</td>
-              <td class="rnumber">47.35</td>
-              <td class="rnumber">38.41</td>
-              <td class="highlight rnumber">58.12</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <figcaption>Accuracy of each model over 7 tasks. The mean accuracy over all four models is 58.12% with
-        <span class="model">Sonnet-<span class="sonnet35-brown">3.5</span></span> being the best at 74.01%
-        accuracy.
-      </figcaption>
-    </div>
-  </section>
 
 
 
