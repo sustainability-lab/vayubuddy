@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="720" height="360" viewBox="0 0 720 360">
-<rect x="-72" y="-36" width="864" height="432" fill="rgb(100%, 100%, 100%)" fill-opacity="1"/>
-<path fill="none" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" stroke="rgb(100%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 115.363281 130.996094 L 369 248.753906 L 622.636719 302.710938 " transform="matrix(1, 0, 0, -1, 0, 360)"/>
-<path fill="none" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" stroke="rgb(0%, 0%, 100%)" stroke-opacity="1" stroke-miterlimit="10" d="M 115.363281 52.199219 L 369 304.199219 L 622.636719 126.417969 " transform="matrix(1, 0, 0, -1, 0, 360)"/>
-</svg>
