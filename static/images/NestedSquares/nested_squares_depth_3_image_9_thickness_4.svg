@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="720" height="720" viewBox="0 0 720 720">
-<rect x="-72" y="-72" width="864" height="864" fill="rgb(100%, 100%, 100%)" fill-opacity="1"/>
-<path fill="none" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 320.933594 343.882812 L 499.957031 343.882812 L 499.957031 522.90625 L 320.933594 522.90625 Z M 320.933594 343.882812 " transform="matrix(1, 0, 0, -1, 0, 720)"/>
-<path fill="none" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 338.433594 379.605469 L 458.839844 379.605469 L 458.839844 500.011719 L 338.433594 500.011719 Z M 338.433594 379.605469 " transform="matrix(1, 0, 0, -1, 0, 720)"/>
-<path fill="none" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 347.21875 406.371094 L 423.664062 406.371094 L 423.664062 482.816406 L 347.21875 482.816406 Z M 347.21875 406.371094 " transform="matrix(1, 0, 0, -1, 0, 720)"/>
-</svg>

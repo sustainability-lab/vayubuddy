@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
-  <polygon points="150,10 245,90 210,210 90,210 55,90" 
-           fill="none" stroke="black" stroke-width="2"/>
-  <polygon points="190,10 285,90 250,210 130,210 95,90" 
-           fill="none" stroke="black" stroke-width="2"/>
-  <polygon points="110,10 205,90 170,210 50,210 15,90" 
-           fill="none" stroke="black" stroke-width="2"/>
-</svg>
