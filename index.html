@@ -1460,7 +1460,7 @@
                 <span class="author-block">
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">
-                      <a href="https://patel-zeel.github.io/"> Zeel B. Patel</a>,</span>
+                      <a href="https://patel-zeel.github.io/"> Zeel B Patel</a>,</span>
                     <span class="author-block">
                       <a>Yash Bachwana</a>,</span>
                     <span class="author-block">
@@ -1502,14 +1502,53 @@
                   </a>
                 </span>
                 <!-- Dataset Link. -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://huggingface.co/datasets/SustainabilityLabIITGN/VayuBuddy_Feedback" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <p style="font-size:20px">🤗</p>
                     </span>
                     <span>Dataset</span>
+                  </a> -->
+                  <span class="link-block">
+                    <a href="https://huggingface.co/spaces/SustainabilityLabIITGN/VayuBuddy"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <p style="font-size:20px">🕹️</p>
+                      </span>
+                      <span>Demo</span>
+                    </a>
+                  </span>
+
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <h2 class="title is-3">VayuBuddy Chatbot</h2>
+                  <a href="https://huggingface.co/spaces/SustainabilityLabIITGN/VayuBuddy">
+                    <img src="static\images\UI_VayuBuddy.png" alt="Clickable Image"">
                   </a>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <p align="center">
+                    <img src="static\images\Figure2.png" alt="Answer for Plot Question">
+                    </p>
+                    <br>
+                    <p align="center">
+                    Figure 1: Graph of the monthly average PM 2.5 for the year 2023
+                    </p>
+                    <br>
+                    <br>
+                    <p align="center">
+                    <img src="static/images/map_plot.png" alt="map_plot">
+                    </p>
+                    <p align="center">
+                    Figure 2: Showing Map plots for the following question
+                    </p>
+                    <ul>
+
                 </span>
 
               </div>
@@ -1539,34 +1578,14 @@
 
             <br>
 
-
-            <section>
-            <p align="center">
-              <strong>Interact with chatbot directly: <a href="https://huggingface.co/spaces/SustainabilityLabIITGN/VayuBuddy">VayuBuddy</a></strong>
-            </p>
-            </section>
-
             <br>
 
 
-            <section>
-            <p><strong>As a testament to its innovative design and real-world relevance, VayuBuddy has been featured in multiple newspaper articles. These articles provide insights into its applications, societal impact, and reception by users.</strong></p>
-            <p align="center">
-              <img src="static/images/newspaper.png" alt="Newspaper Cuttings" style="width: 130%; border: 1px solid #ddd;"> 
-              </p>
-              <p align="center">
-                Figure 1: Media Coverage of VayuBuddy Chatbot
-                </p>
-            </section>
 
-            <br>
-
-
-              <section id="dataset" class="level1">
-                <h1>Dataset</h1>
-                <section id="source" class="level3">
-                <h3 class="anchored" data-anchor-id="source">Source:</h3>
-                <p>Central Pollution Control Board (CPCB), India. ### Details: Covers 537 monitoring stations across 279 cities in 31 states. 7 years of PM2.5 data (2017–2023) resampled to daily averages.</p>
+            <section id="dataset" class="level1">
+              <h1 style="text-align: center;">Dataset</h1>
+              <section id="source" class="level3">
+                <p>Central Pollution Control Board (CPCB), India. Covers 537 monitoring stations across 279 cities in 31 states. 7 years of PM2.5 data (2017–2023) resampled to daily averages.</p>
                 <p>Using the above theorem, probability statements about the sample mean can be approximated using a normal distribution. It’s the probability statements that are being approximated, not the random variable itself.</p>
                 </section>
 
@@ -1574,71 +1593,57 @@
 
 
                 <section id="flowchart-of-vayubuddy-system" class="level1">
-                  <h1>Flowchart of VayuBuddy System</h1>
+                  <h1 style="text-align: center;">Flowchart of VayuBuddy System</h1>
                   <p align="center">
-                  <img src="static/images/Picture2.png" alt="flowchart">
+                  <img src="static/images/Picture2.svg" alt="flowchart">
                   </p>
                   <p align="center">
-                  Figure 2: Flowchart of the VayuBuddy Chatbot
+                  Figure 3: Flowchart of the VayuBuddy Chatbot
                   </p>
 
                   <br>
 
                   <section id="prompts-given-to-the-llm-system-prompts-additional-information-and-direction-given-to-the-llm." class="level1">
-                    <h1>Prompts Given to the LLM: System Prompts, Additional information and direction given to the LLM.</h1>
-                    <ul>
-                    <li>The columns are ‘Timestamp’, ‘station’, ‘PM2 .5’, ‘PM10’, ‘address’, ‘city’, ‘latitude’, ’ longitude’,and ‘state’.</li>
-                    <li>Frequency of data is daily.</li>
-                    <li><code>pollution</code> generally means <code>PM2.5</code>.</li>
-                    <li>Don’t print anything, but save result in a variable <code>answer</code> and make it global.</li>
-                    <li>Unless explicitly mentioned, don’t consider the result as a plot.</li>
-                    <li>PM2.5 guidelines: India: 60, WHO: 15.</li>
-                    <li>PM10 guidelines: India: 100, WHO: 50.</li>
-                    <li>If result is a plot, show the India and WHO guidelines in the plot.</li>
-                    <li>If result is a plot make it in tight layout, save it and save path in <code>answer</code>. Example: <code>answer='plot.png'</code></li>
-                    <li>If result is a plot, rotate x-axis tick labels by 45 degrees.</li>
-                    <li>If result is not a plot, save it as a string in <code>answer</code>. Example: <code>answer='The city is Mumbai'</code></li>
-                    <li>I have a geopandas.geodataframe india containining the coordinates required to plot Indian Map with states.</li>
-                    <li>If the query asks you to plot on India Map, use that geodataframe to plot and then add more points as per the requirements using the similar code as follows : v = ax.scatter(df[‘longitude’], df[‘latitude’]). If the colorbar is required , use the following code : plt.colorbar(v)</li>
-                    <li>If the query asks you to plot on India Map plot the India Map in Beige color</li>
-                    <li>Whenever you do any sort of aggregation, report the corresponding standard deviation, standard error and the number of data points for that aggregation.</li>
-                    <li>Whenever you’re reporting a floating point number, round it to 2 decimal places.</li>
-                    <li>Always report the unit of the data. Example: The average PM2.5 is 45.67 𝜇𝑔𝑚−3.</li>
-                    </ul>
+                    <h1 style="text-align: center;">System Prompt</h1>
+                    <section id="source" class="level3">
+                    <pre>
+* I have a pandas dataframe data of PM2.5 and PM10.
+* The columns are 'Timestamp', 'station', 'PM2.5', 'PM10', 'address', 'city', 'latitude', 'longitude', and 'state'.
+* Frequency of data is daily.
+* `pollution` generally means `PM2.5`.
+* You already have df, so don't read the csv file.
+* Don't print anything, but save result in a variable `answer` and make it global.
+* Unless explicitly mentioned, don't consider the result as a plot.
+* PM2.5 guidelines: India: 60, WHO: 15.
+* PM10 guidelines: India: 100, WHO: 50.
+* If result is a plot, show the India and WHO guidelines in the plot.
+* If result is a plot make it in tight layout, save it and save path in `answer`. Example: `answer='plot.png'`. Use uuid to save the plot.
+* If result is a plot, rotate x-axis tick labels by 45 degrees.
+* If result is not a plot, save it as a string in `answer`. Example: `answer='The city is Mumbai'`.
+* I have a geopandas.geodataframe india containing the coordinates required to plot Indian Map with states.
+* If the query asks you to plot on India Map, use that geodataframe to plot and then add more points as per the requirements using the similar code as follows:
+  `v = ax.scatter(df['longitude'], df['latitude'])`.
+  If the colorbar is required, use the following code:
+  `plt.colorbar(v)`.
+* If the query asks you to plot on India Map, plot the India Map in Beige color.
+* Whenever you do any sort of aggregation, report the corresponding standard deviation, standard error and the number of data points for that aggregation.
+* Whenever you're reporting a floating point number, round it to 2 decimal places.
+* Always report the unit of the data. Example: `The average PM2.5 is 45.67 µg/m³`.
+* If a colorbar is plotted and it represents air quality, use `Reds` cmap.
+
+                    </pre>
+                    </pre>
                     </section>
 
                     <br>
 
 
-                    <section id="impact-of-the-vayubuddy-chatbot" class="level1">
-                      <h1>Impact of the VayuBuddy Chatbot</h1>
-                      <p><strong>Health Impact:</strong> - PM2.5 pollutants are major contributors to life-threatening diseases, such as respiratory and cardiovascular conditions.</p>
-                      <ul>
-                      <li>Gaining insights into PM2.5 pollution levels is crucial for implementing effective mitigation strategies.</li>
-                      </ul>
-                      <p><strong>Accessibility:</strong> - Democratizes air quality data analysis.&nbsp;This makes the data accessible to non-experts which reduces dependency on technical knowledge or resources.</p>
-                      <ul>
-                      <li><p>Empowers stakeholders like policymakers, researchers, and the public to make informed decisions.</p></li>
-                      <li><p>The public can make healthier lifestyle choices, such as wearing masks or avoiding outdoor activities during high pollution periods.</p></li>
-                      </ul>
-                      </section>
-
-                      <br>
-
-
-                      <section id="evaluation-of-the-llms" class="level1">
-                      <h1>Evaluation of the LLMs</h1>
-                      <p><strong>Automated Evaluation Pipeline :</strong> - Built to make Evaluation faster and fair. - Ensures all possible correct answers are included.</p>
-                      <p><strong>How we measure Correctness:</strong> - 1 point : Correct Answer - 0 point : Incorrect Answer</p>
-                      <p><strong>When is it incorrect? :</strong> - LLM doesn’t generate the code - LLM generates code but gives an error while running. - LLM generates code runs but gives wrong answers.</p>
-                      <p>You can see in the results that all the models are given points according to the 45 pre-prompted questions.</p>
-                      </section>
-
-                      <br>
+                  
 
 
                       <section id="results" class="level1">
-                      <h1>Results</h1>
+                      <h1 style="text-align: center;">Results</h1>
+                      <section id="source" class="level3">
                       <p><strong>Table 1:</strong> <em>Overall Performance of LLMs on all evaluation queries.</em></p>
                       <table class="caption-top table">
                       <thead>
@@ -1702,8 +1707,6 @@
                       </tbody>
                       </table>
                       <ul>
-                      <li><p>LLama3 models are performing the best among all models, with Codestral and Mixtral following LLama in performance.</p></li>
-                      <li><p>Models with more parameters tend to perform better compared to those with fewer parameters.</p></li>
                       </ul>
                       <p><strong>Table 2:</strong> <em>Performance of LLMs on different stakeholders.</em></p>
                       <table class="caption-top table">
@@ -1817,87 +1820,60 @@
 
                       <br>
 
-
                       <section id="findings" class="level1">
-                      <h1>FINDINGS</h1>
-                      <p align="center">
-                      <img src="static/images/Plot_q.png" alt="Answer for Plot Question">
-                      </p>
-                      <br>
-                      <p align="center">
-                      Figure 3: Graph of the monthly average PM 2.5 for the year 2023
-                      </p>
-                      <br>
-                      <p align="center" style="font-size: 1.5em; font-weight: bold;">
-                      Gave some custom questions generated by ChatGPT to ask to the model.
-                      </p>
-                      <ul>
-                      <li><p>“Which state in India currently has the highest PM2.5 levels?”</p></li>
-                      <li><p>“Which state in India has the lowest PM2.5 levels according to the data?”</p></li>
-                      <li><p>“What is the PM2.5 level in India’s most polluted city?”</p></li>
-                      <li><p>“Which region in India shows the highest PM2.5 concentration throughout the year?”</p></li>
-                      <li><p>“During which month does India experience the highest PM2.5 levels on average?”</p></li>
-                      <li><p>“Which state in India has the most significant decrease in PM2.5 levels?”</p></li>
-                      <li><p>“How do the PM2.5 levels in northern India compare to southern India?”</p></li>
-                      <li><p>“Which city in India consistently shows the highest PM2.5 levels?”</p></li>
-                      <li><p>“What is the PM2.5 level in India’s least polluted state?”</p></li>
-                      <li><p>“In which month do PM2.5 levels peak in Indian cities?”</p></li>
-                      </ul>
-
-                      <br>
-
-
-                      <p><strong>For Question “Which state in India currently has the highest PM2.5 levels?”</strong></p>
-                      <ul>
-                      <li><p>Out of 4 models in the given bot Llama3 and Gemini pro gave the answers.</p></li>
-                      <li><p>The finding i found was it gave different answers for the same question. Llama3 gave the answer as “Delhi” and Gemini pro gave the answer as “Maharashtra”.</p></li>
-                      </ul>
-                      <p align="center">
-                      <img src="static/images/Q1_gemini.png" alt="Gemini pro answer">
-                      </p>
-                      <p align="center">
-                      Figure 4: Gemini pro answer
-                      </p>
-                      <p align="center">
-                      <img src="static/images/Q1_llama3.png" alt="llama3 answer">
-                      </p>
-                      <p align="center">
-                      Figure 5: Llama3 answer
-                      </p>
-                      <p><strong>Great thing about the VayuBuddy is that it can give the map plot also for the given question.</strong></p>
-                      <p align="center">
-                      <img src="static/images/map_plot.png" alt="map_plot">
-                      </p>
-                      <p align="center">
-                      Figure 6: Showing Map plots for the following question
-                      </p>
-                      <ul>
-
-                      <br>
-
-                      <li><p>Some of the observations we found was that the model was able to generate the code for the given question and also gave the answer for the same.</p></li>
-                      <li><p>For the above questions which we generated from ChatGPT only two models were able to answer those question which were Llama3 and Gemini pro.</p></li>
-                      <li><p>The answers given by the models were different for the same question which shows that the model is not able to give the correct answer for the same question.</p></li>
-                      <li><p>Llama3 model was able to answer all questions correctly which were generated by ChatGPT.</p></li>
-                      <li><p>We observed that only Llama3 model was able to generate the graphs and map plots for the asking question related to that.</p></li>
-                      </ul>
+                        <details>
+                          <summary>
+                            <h1 style="text-align: center;">Findings</h1>
+                          </summary>
+                          <p align="center" style="font-size: 1.5em; font-weight: bold;"></p>
+                          <p><strong>For Question “Which state in India currently has the highest PM2.5 levels?”</strong></p>
+                          <ul>
+                            <li>
+                              <p>Out of 4 models in the given bot, Llama3 and Gemini Pro gave the answers.</p>
+                            </li>
+                            <li>
+                              <p>The findings showed different answers for the same question. Llama3 gave the answer as <strong>“Delhi”</strong>, while Gemini Pro gave the answer as <strong>“Maharashtra”</strong>.</p>
+                            </li>
+                          </ul>
+                          <p align="center">
+                            <img src="static/images/Q1_gemini.png" alt="Gemini Pro answer">
+                          </p>
+                          <p align="center">Figure 4: Gemini Pro answer</p>
+                          <p align="center">
+                            <img src="static/images/Q1_llama3.png" alt="Llama3 answer">
+                          </p>
+                          <p align="center">Figure 5: Llama3 answer</p>
+                          <ul>
+                            <li>
+                              <p>Some observations revealed that the models could <strong>generate code</strong> for the question and also provide an answer.</p>
+                            </li>
+                            <li>
+                              <p>For the above questions generated from ChatGPT, only two models, <strong>Llama3</strong> and <strong>Gemini Pro</strong>, were able to answer.</p>
+                            </li>
+                            <li>
+                              <p>The Llama3 model answered all questions correctly, which were generated by ChatGPT.</p>
+                            </li>
+                            <li>
+                              <p>We observed that only the <strong>Llama3</strong> model was able to generate <strong>graphs</strong> and <strong>map plots</strong> for related questions.</p>
+                            </li>
+                          </ul>
+                        </details>
                       </section>
                       
                       <br>
-
-                      <section id="limitations-and-future-work" class="level1">
-                      <h1>Limitations and Future Work</h1>
-                      <ul>
-                      <li><p>It is limited to Indian air quality data. We can extend beyond and include data from other countries.</p></li>
-                      <li><p>It lacks fine-tuning on domain-specific tasks.</p></li>
-                      <li><p>It faces difficulty handling multi-station queries.We can use advanced methods to effectively process and respond.</p></li>
-                      <li><p>This system only specifically focuses on one pollutant, PM<sub>2.5</sub>. We can include more pollutants like SO<sub>2</sub>, NO<sub>2</sub>, CO, and O<sub>3</sub> for comprehensive air monitoring.</p></li>
-                      <li><p>It relies on zero-shot prompting only and hasn’t been evaluated with other prompting methods like chain of thought, tree of thought, and react prompting.</p></li>
-                      <li><p>The Library installation process is not automated and requires manual setup.</p></li>
-                      </ul>
-                      
-                      
+                      <br>
+                      <br>
+                      <br>
+                      <section>
+                        <h1 style="text-align: center;">Media Coverage of VayuBuddy Chatbot</h1>
+                        <br>
+                        
+                      <p><strong>As a testament to its innovative design and real-world relevance, VayuBuddy has been featured in multiple newspaper articles. These articles provide insights into its applications, societal impact, and reception by users.</strong></p>
+                      <p align="center">
+                        <img src="static/images/newspaper.png" alt="Newspaper Cuttings" style="width: 130%; border: 1px solid #ddd;"> 
+                      </p>
                       </section>
+
           </div>
         </div>
       </div>
